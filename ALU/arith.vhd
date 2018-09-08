@@ -9,7 +9,7 @@ package arith is
         b: std_logic_vector;
         b_invert: std_logic ) return std_logic_vector;
 
-    function prod (vec: std_logic_vector) return std_logic;
+    function vprod (vec: std_logic_vector) return std_logic;
 
 end package ; -- own 
 
@@ -18,10 +18,9 @@ package body arith is
     -- if b_invert is 0 we add else we subtract.
     -- the lenght of a must be equal to b.
     -- if a has n bits c must have n + 1 bits
-    function carry_with_sum(
-        a: std_logic_vector;
-        b: std_logic_vector;
-        b_invert: std_logic ) 
+    function carry_with_sum(a: std_logic_vector;
+                            b: std_logic_vector;
+                            b_invert: std_logic ) 
     return std_logic_vector is 
         variable n: integer := a'length;
         variable c: std_logic_vector(n downto 0);
@@ -37,24 +36,18 @@ package body arith is
             for j in 0 to i - 1 loop -- summation
                 prod := '1'; 
                 for k in j + 1 to i loop 
-                    prod := prod and p(k);
+                    prod := prod and p(k); 
                 end loop;
                 sum := sum or (g(j) and prod);
             end loop;
-            prod := '1';
-            for j in 0 to i loop
-                prod := prod and p(j);
-            end loop;
+            prod := vprod(p(i downto 0));
             c(i + 1) := g(i) or sum or (c(0) and prod);
         end loop;
-        for i in 0 to n - 1 loop    
-            s(i) := p(i) xor c(i);
-        end loop;
-        return c & s;
+        return c;
     end function;
 
 
-	function prod (vec: std_logic_vector) 
+	function vprod (vec: std_logic_vector) 
 	return std_logic is
 		variable result : std_logic := '1';
 	begin 

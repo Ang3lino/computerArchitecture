@@ -26,11 +26,11 @@ architecture angel of alu is
 begin
 
     process(a, b, b_invert) is 
-       variable tmp: std_logic_vector((2 * n) downto 0);
     begin
-        tmp := carry_with_sum(a, b, b_invert);
-        c <= tmp(2 * n downto n);
-        s <= tmp(n - 1 downto 0);
+        c <= carry_with_sum(a, b, b_invert);
+        for i in 0 to n - 1 loop 
+            s(i) <= c(i) xor a(i) xor b(i) xor b_invert;
+        end loop;
     end process;
 
 end architecture ;
