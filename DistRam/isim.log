@@ -1,0 +1,38 @@
+ISim log file
+Running: C:\Users\marco\Documents\ESCOM\QUINTO SEMESTRE\ARQUITECTURA DE COMPUTADORAS\DistRam\TB_RAM_D_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb C:/Users/marco/Documents/ESCOM/QUINTO SEMESTRE/ARQUITECTURA DE COMPUTADORAS/DistRam/TB_RAM_D_isim_beh.wdb 
+INFO: There is another simulation running in the same directory. Using database file name isim1.wdb.
+ISim P.20131013 (signature 0x7708f090)
+This is a Full version of ISim.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+at 215 ns(1): Error: Textio read:: called on empty string or line
+at 215 ns(1): Error: HREAD Error: Read a '?', expected a Hex character (0-F).
+at 215 ns(1): Error: Textio read:: called on empty string or line
+at 215 ns(1): Error: HREAD Error: Read a '?', expected a Hex character (0-F).
+at 215 ns(1): Error: Textio read:: called on empty string or line
+at 215 ns(1): Error: READ(STD_ULOGIC) Error: Character '?' read, expected STD_ULOGIC literal.
+at 225 ns(1): Error: already at the end of file, nothing to read
+at 225 ns(1): Error: Textio read:: called on empty string or line
+at 225 ns(1): Error: HREAD Error: Read a '?', expected a Hex character (0-F).
+at 225 ns(1): Error: Textio read:: called on empty string or line
+at 225 ns(1): Error: HREAD Error: Read a '?', expected a Hex character (0-F).
+at 225 ns(1): Error: Textio read:: called on empty string or line
+at 225 ns(1): Error: READ(STD_ULOGIC) Error: Character '?' read, expected STD_ULOGIC literal.
+at 235 ns(1): Error: already at the end of file, nothing to read
+at 235 ns(1): Error: Textio read:: called on empty string or line
+at 235 ns(1): Error: HREAD Error: Read a '?', expected a Hex character (0-F).
+at 235 ns(1): Error: Textio read:: called on empty string or line
+at 235 ns(1): Error: HREAD Error: Read a '?', expected a Hex character (0-F).
+at 235 ns(1): Error: Textio read:: called on empty string or line
+at 235 ns(1): Error: READ(STD_ULOGIC) Error: Character '?' read, expected STD_ULOGIC literal.
+at 245 ns(1): Error: already at the end of file, nothing to read
+at 245 ns(1): Error: Textio read:: called on empty string or line
+at 245 ns(1): Error: HREAD Error: Read a '?', expected a Hex character (0-F).
+at 245 ns(1): Error: Textio read:: called on empty string or line
+at 245 ns(1): Error: HREAD Error: Read a '?', expected a Hex character (0-F).
+at 245 ns(1): Error: Textio read:: called on empty string or line
+at 245 ns(1): Error: READ(STD_ULOGIC) Error: Character '?' read, expected STD_ULOGIC literal.

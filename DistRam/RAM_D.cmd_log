@@ -1,0 +1,2 @@
+xst -intstyle ise -ifn "C:/Xilinx/DistRam/RAM_D.xst" -ofn "C:/Xilinx/DistRam/RAM_D.syr" 
+xst -intstyle ise -ifn "C:/Xilinx/DistRam/RAM_D.xst" -ofn "C:/Xilinx/DistRam/RAM_D.syr" 
