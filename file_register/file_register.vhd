@@ -41,22 +41,55 @@ architecture arch of file_register is
         );
     end component;
 
+    component barrel_shifter 
+        generic (
+            nbits: integer := 8;
+            nshift: integer := 3
+        );
+        Port ( 
+            DATAIN : in  STD_LOGIC_VECTOR (nbits - 1 downto 0);
+            SHIFT_AMT : in  STD_LOGIC_VECTOR (nshift - 1 downto 0);
+            left: in std_logic;
+            DATAOUT : out  STD_LOGIC_VECTOR (nbits - 1 downto 0)
+        );
+    end component;
+
     constant logic_one : std_logic := '1';
 
     signal sig_dataout1, sig_dataout2: std_logic_vector(read_data_1'range);
-    signal sig_
+    signal sig_datain: std_logic_vector(read_data_1'range);
+    signal sig_datashift: std_logic_vector(read_data_1'range);
 
 begin
+
+    read_data_1 <= sig_dataout1;
+    read_data_2 <= sig_dataout2;
 
     u_ram: double_port_ram_64K_x_8 port map (
         CLK,
         logic_one,
         read_register_1,
         read_register_2,
-        write_register,
+        sig_datain,
         write_data,
         sig_dataout1,
         sig_dataout2
     );
+
+    u_shifter: barrel_shifter port map(
+        sig_dataout1,
+        shitf_amt, 
+        left,
+        sig_datashift 
+    );
+
+    process(shift_enabled)
+    begin 
+        if shift_enabled = '1' then 
+            sig_datain <= sig_datashift;
+        else 
+            sig_datain <= write_data;
+        end if;
+    end process;
 
 end arch ; -- arch

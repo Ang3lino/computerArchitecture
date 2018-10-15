@@ -27,24 +27,24 @@ use IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
-entity BARREL_SHIFTER is
+entity barrel_shifter is
 	generic (
 		nbits: integer := 8;
 		nshift: integer := 3
 	);
     Port ( 
 		DATAIN : in  STD_LOGIC_VECTOR (nbits - 1 downto 0);
-		SHIFT : in  STD_LOGIC_VECTOR (nshift - 1 downto 0);
+		SHIFT_AMT : in  STD_LOGIC_VECTOR (nshift - 1 downto 0);
 		left: in std_logic;
 		DATAOUT : out  STD_LOGIC_VECTOR (nbits - 1 downto 0)
 	);
-end BARREL_SHIFTER;
+end barrel_shifter;
 
 architecture Behavioral of BARREL_SHIFTER is
 
 begin
 
-	process(DATAIN, SHIFT, left) is
+	process(DATAIN, SHIFT_AMT, left) is
 		variable i: integer; -- shift
 		variable j: integer; -- data in
 		variable data_shift: STD_LOGIC_VECTOR(DATAIN'range);
@@ -79,12 +79,12 @@ begin
 	end process;	
 
 	-- version using high level operands
-	--PSLL: PROCESS(DATAIN, SHIFT)
+	--PSLL: PROCESS(DATAIN, SHIFT_AMT)
 	--BEGIN
 	--	if left = '1' then 
-	--		DATAOUT <= TO_STDLOGICVECTOR(TO_BITVECTOR(DATAIN) SLL CONV_INTEGER(SHIFT));
+	--		DATAOUT <= TO_STDLOGICVECTOR(TO_BITVECTOR(DATAIN) SLL CONV_INTEGER(SHIFT_AMT));
 	--	else 
-	--		DATAOUT <= TO_STDLOGICVECTOR(TO_BITVECTOR(DATAIN) ROR CONV_INTEGER(SHIFT));
+	--		DATAOUT <= TO_STDLOGICVECTOR(TO_BITVECTOR(DATAIN) ROR CONV_INTEGER(SHIFT_AMT));
 	--	end if;
 	--END PROCESS PSLL;
 
