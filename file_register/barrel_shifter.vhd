@@ -59,7 +59,7 @@ begin
 
 		for i in 0 to nshift - 1 loop
 			for j in nbits - 1 downto 0 loop 
-				if shift(i) = '1' then 
+				if shift_amt(i) = '1' then 
 					if j - 2 ** i >= 0 then 
 						data_shift(j) := data_shift(j - 2 ** i);
 					else 

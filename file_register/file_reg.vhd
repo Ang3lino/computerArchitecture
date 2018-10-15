@@ -27,6 +27,9 @@
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
+use ieee.std_logic_arith.all; -- conv_std_logic_vector
+USE ieee.std_logic_TEXTIO.ALL;
+USE STD.TEXTIO.ALL;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -108,7 +111,7 @@ BEGIN
       variable lresult : line; -- line of result
 
       file finput : TEXT; --file of data that enters
-      variable lresult : line;
+      variable linput : line;
 
       variable nibble : std_logic_vector(3 downto 0);
       variable byte : std_logic_vector(15 downto 0);
@@ -119,6 +122,7 @@ BEGIN
 
    begin		
 
+      -- these files must be or will be in the path of the project
       file_open(finput, "inputs.txt", read_mode);  
       file_open(fresult, "results.txt", write_mode);    
 
@@ -142,9 +146,9 @@ BEGIN
          read(linput, int4b);
          write_register <= conv_std_logic_vector(int4b, 4);
 
-         hread(linput, int16b);
-         write_data <= conv_std_logic_vector(int4b, 16);
-
+         hread(linput, byte);
+			write_data <= byte;
+			
          read(linput, mBit);
          write_not_read <= mBit;
 
@@ -158,16 +162,16 @@ BEGIN
 
          -- the third argument of write function must be the amount of bits of de data
          -- plus one (an extra space)
-         write(lresult, read_register_1, right, read_register_1'length + 1);
-         write(lresult, read_register_2, right, read_register_2'length + 1);
-         write(lresult, shift_amount, right, shift_amount'length + 1);
-         write(lresult, write_register, right, write_register'length + 1);
-         write(lresult, write_data, right, write_data'length + 1);
+         hwrite(lresult, read_register_1, right, read_register_1'length + 1);
+         hwrite(lresult, read_register_2, right, read_register_2'length + 1);
+         hwrite(lresult, shift_amount, right, shift_amount'length + 1);
+         hwrite(lresult, write_register, right, write_register'length + 1);
+         hwrite(lresult, write_data, right, write_data'length + 1);
          write(lresult, write_not_read, right, 2);
          write(lresult, shift_enabled, right, 2);
          write(lresult, left_dir, right, 2);
-         write(lresult, read_register_1, right, read_register_1'length + 1);
-         write(lresult, read_register_2, right, read_register_2'length + 1);
+         hwrite(lresult, read_register_1, right, read_register_1'length + 1);
+         hwrite(lresult, read_register_2, right, read_register_2'length + 1);
             
          writeline(fresult, lresult);-- escribe la linea en el archivo
       end loop;

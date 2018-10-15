@@ -8,8 +8,7 @@ entity file_register is
     generic (
         nbits: integer := 16;
         naddr: integer := 4
-    );
-    port (
+    ); port (
         read_register_1, read_register_2: in std_logic_vector(naddr - 1 downto 0);
         write_register: in std_logic_vector(naddr - 1 downto 0);
         shift_amount: in std_logic_vector(naddr - 1 downto 0); 
@@ -22,13 +21,11 @@ end entity;
 
 architecture arch of file_register is
 
-    sig_register_enabled: std_logic_vector(write_data'range);
-
-    component DOUBLE_PORT_RAM_64k_x_8 
-        generic (
-            naddr: integer := 8;
-            nbits: integer := 16
-        );
+    component DOUBLE_PORT_RAM
+		generic (
+			naddr: integer := 4;
+			nbits: integer := 16
+		);
         port ( 
             CLK 	: IN  STD_LOGIC;
             WE 	: IN  STD_LOGIC; -- write enable
@@ -65,21 +62,27 @@ begin
     read_data_1 <= sig_dataout1;
     read_data_2 <= sig_dataout2;
 
-    u_ram: double_port_ram_64K_x_8 port map (
-        CLK,
-        logic_one,
-        read_register_1,
-        read_register_2,
-        sig_datain,
-        write_data,
-        sig_dataout1,
-        sig_dataout2
+    u_ram: double_port_ram generic map (
+		naddr => naddr,
+		nbits => nbits
+	 ) port map (
+        clk => CLK,
+        we => logic_one,
+        addr_r1 => read_register_1,
+        addr_r2 => read_register_2,
+        addr_w => write_register,
+        din => sig_datain,
+        dout1 => sig_dataout1,
+        dout2 => sig_dataout2
     );
 
-    u_shifter: barrel_shifter port map(
+    u_shifter: barrel_shifter generic map (
+        nbits => nbits, 
+        nshift => naddr
+        ) port map (
         sig_dataout1,
-        shitf_amt, 
-        left,
+        shift_amount, 
+        left_dir,
         sig_datashift 
     );
 
