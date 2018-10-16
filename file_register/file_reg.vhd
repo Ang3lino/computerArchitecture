@@ -112,6 +112,7 @@ BEGIN
 
       file finput : TEXT; --file of data that enters
       variable linput : line;
+		variable str: string(1 to 5);
 
       variable nibble : std_logic_vector(3 downto 0);
       variable byte : std_logic_vector(15 downto 0);
@@ -125,6 +126,28 @@ BEGIN
       -- these files must be or will be in the path of the project
       file_open(finput, "inputs.txt", read_mode);  
       file_open(fresult, "results.txt", write_mode);    
+
+	str:= "  RR1";
+	write(lresult, str, right, str'length + 1);
+	str:= "  RR2";
+	write(lresult, str, right, str'length + 1);
+	str:= "   SH";
+	write(lresult, str, right, str'length + 1);
+	str:= " WREG";
+	write(lresult, str, right, str'length + 1);
+	str:= "   WD";
+	write(lresult, str, right, str'length + 1);
+	str:= "   WR";
+	write(lresult, str, right, str'length + 1);
+	str:= "  SHE";
+	write(lresult, str, right, str'length + 1);
+	str:= "  DIR";
+	write(lresult, str, right, str'length + 1);
+	str:= "  RD1";
+	write(lresult, str, right, str'length + 1);
+	str:= "  RD2";
+	write(lresult, str, right, str'length + 1);
+	writeline(fresult, lresult);
 
       -- hold reset state for 100 ns.
       wait for 100 ns;	
@@ -158,7 +181,8 @@ BEGIN
          read(linput, mBit);
          left_dir <= mBit;
 
-         WAIT FOR clk_period;
+         --WAIT FOR clk_period;
+	 wait until rising_edge(clk);
 
          -- the third argument of write function must be the amount of bits of de data
          -- plus one (an extra space)
