@@ -182,20 +182,21 @@ BEGIN
          left_dir <= mBit;
 
          --WAIT FOR clk_period;
-	 wait until rising_edge(clk);
-
+	 --wait until rising_edge(clk);
+	 wait until falling_edge(clk);
+			
          -- the third argument of write function must be the amount of bits of de data
          -- plus one (an extra space)
-         hwrite(lresult, read_register_1, right, read_register_1'length + 1);
-         hwrite(lresult, read_register_2, right, read_register_2'length + 1);
-         hwrite(lresult, shift_amount, right, shift_amount'length + 1);
-         hwrite(lresult, write_register, right, write_register'length + 1);
-         hwrite(lresult, write_data, right, write_data'length + 1);
-         write(lresult, write_not_read, right, 2);
-         write(lresult, shift_enabled, right, 2);
-         write(lresult, left_dir, right, 2);
-         hwrite(lresult, read_register_1, right, read_register_1'length + 1);
-         hwrite(lresult, read_register_2, right, read_register_2'length + 1);
+         hwrite(lresult, read_register_1, right, 6);
+         hwrite(lresult, read_register_2, right, 6);
+         hwrite(lresult, shift_amount, right, 6);
+         hwrite(lresult, write_register, right, 6);
+         hwrite(lresult, write_data, right, 6);
+         write(lresult, write_not_read, right, 6);
+         write(lresult, shift_enabled, right, 6);
+         write(lresult, left_dir, right, 6);
+         hwrite(lresult, read_data_1, right, 6);
+         hwrite(lresult, read_data_2, right, 6);
             
          writeline(fresult, lresult);-- escribe la linea en el archivo
       end loop;
