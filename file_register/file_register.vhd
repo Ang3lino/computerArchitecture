@@ -25,8 +25,8 @@ architecture arch of file_register is
 		generic (
 			naddr: integer := 4;
 			nbits: integer := 16
-		);
-        port ( 
+		); 
+	port ( 
             CLK 	: IN  STD_LOGIC;
             WE 	: IN  STD_LOGIC; -- write enable
             ADDR_R1  : IN  STD_LOGIC_VECTOR (naddr - 1 DOWNTO 0); --Two variables for reading
@@ -63,9 +63,9 @@ begin
     read_data_2 <= sig_dataout2;
 
     u_ram: double_port_ram generic map (
-		naddr => naddr,
-		nbits => nbits
-	 ) port map (
+	naddr => naddr,
+	nbits => nbits
+    ) port map (
         clk => CLK,
         we => logic_one,
         addr_r1 => read_register_1,
@@ -76,23 +76,19 @@ begin
         dout2 => sig_dataout2
     );
 
+					   
     u_shifter: barrel_shifter generic map (
         nbits => nbits, 
         nshift => naddr
-        ) port map (
-        sig_dataout1,
-        shift_amount, 
-        left_dir,
-        sig_datashift 
+    ) port map (
+        datain => sig_dataout1,
+        SHIFT_AMT => shift_amount, 
+        left => left_dir,
+        dataout => sig_datashift 
     );
 
-    process(shift_enabled)
-    begin 
-        if shift_enabled = '1' then 
-            sig_datain <= sig_datashift;
-        else 
-            sig_datain <= write_data;
-        end if;
-    end process;
+    sig_datain <= sig_datashift when shift_enabled = '1' else 
+                  write_data;
+
 
 end arch ; -- arch
