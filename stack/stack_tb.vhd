@@ -95,7 +95,7 @@ BEGIN
    -- Stimulus process
    stim_proc: process
 
-      file finput, fresult: TEXT; -- file of results                                 
+      file finput, fresult: text;
       variable linput, lresult: line;
 
       variable nibble : std_logic_vector(3 downto 0);
@@ -103,31 +103,33 @@ BEGIN
       variable mBit : std_logic;
       variable int4b : integer range 0 to 2 ** 4 - 1;
       variable int16b : integer range 0 to 2 ** 16 - 1;
-      variable str : string(1 to 20);
+      variable str : string(1 to 5); -- be careful with the length of the string
 
    begin    
 
       -- these files must be or will be in the path of the project
-      file_open(finput, "inputs.txt", read_mode);  
-      file_open(fresult, "results.txt", write_mode);    
+      -- I made a src folder where is all source code, it is inside the project 
+      file_open(finput, "src/inputs.txt", read_mode);  
+      file_open(fresult, "src/results.txt", write_mode);    
 
-      -- hold reset state for 100 ns.
       wait for 100 ns;  
 
       -- insert stimulus here 
       while not endfile(finput) loop 
-        hread(finput, byte);
+			wait until rising_edge(clk);
+        readline(finput, linput); -- Read a complete line
+        hread(linput, byte);
         d <= byte;
-        hread(finput, mBit);
+        read(linput, mBit);
         up <= mBit;
-        hread(finput, mBit);
+        read(linput, mBit);
         down <= mBit;
-        hread(finput, mBit);
+        read(linput, mBit);
         wpc <= mBit;
-        hread(finput, mBit);
+        read(linput, mBit);
         clr <= mBit;
         --WAIT FOR clk_period;
-        WAIT until falling_edge(clk);
+        --WAIT until falling_edge(clk);
 
          -- the third argument of write function must be the amount of bits of de data
          -- plus one (an extra space)
@@ -137,7 +139,7 @@ BEGIN
          write(lresult, wpc, right, 2);
          write(lresult, clr, right, 2);
          --write(lresult, sp, right, 2); -- sp is not defined in the entity...
-         write(lresult, q, right, 2);
+         hwrite(lresult, q, right, 5);
 
          writeline(fresult, lresult);-- escribe la linea en el archivo
       end loop;

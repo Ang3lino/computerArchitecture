@@ -32,10 +32,13 @@ architecture arch of stack is
 	end component;
 
 	signal sstack_ptr: std_logic_vector(3 downto 0);
+	signal sstack_ptr_predecessor: std_logic_vector(3 downto 0);
+
 	signal swrite_data: std_logic_vector(d'range);
 	signal sq_prog_cnt: std_logic_vector(d'range); -- quantity of program counter signal
 	signal sram_dout: std_logic_vector(d'range);
 	signal sinput_pc: std_logic_vector(d'range);
+	signal sq_prog_cnt_successor: std_logic_vector(d'range);
 	
 	constant std_one: std_logic := '1';
 
@@ -54,17 +57,22 @@ begin
 		end if;
 	end process;
 
+	sq_prog_cnt_successor <= sq_prog_cnt + 1;
+	sstack_ptr_predecessor <= sstack_ptr - 1;
+
 	u_dist_ram: dist_ram_double_port generic map ( 
 		naddr => 4,
 		nbits => 16
 	) port map ( 
 		clk => clk,
 		we => std_one, 
-		addr_r => sstack_ptr - 1,
+		addr_r =>sstack_ptr_predecessor,
 		addr_w => sstack_ptr,
-		din => sq_prog_cnt + 1,
+		din => sq_prog_cnt_successor,
 		dout => sram_dout
 	);
+	
+	
 
 	sinput_pc <= sram_dout when down = '1' else 
 			  d;
