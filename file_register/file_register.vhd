@@ -67,7 +67,7 @@ begin
 	nbits => nbits
     ) port map (
         clk => CLK,
-        we => logic_one,
+        we => write_not_read,
         addr_r1 => read_register_1,
         addr_r2 => read_register_2,
         addr_w => write_register,
