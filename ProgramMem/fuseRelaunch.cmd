@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "C:/Xilinx/ProgramMem/TB_ROM_isim_beh.exe" -prj "C:/Xilinx/ProgramMem/TB_ROM_beh.prj" "work.TB_ROM" 
