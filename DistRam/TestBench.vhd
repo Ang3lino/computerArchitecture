@@ -28,7 +28,6 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.std_logic_UNSIGNED.ALL;
-USE STD.TEXTIO.ALL;
 USE ieee.std_logic_ARITH.ALL;
 USE ieee.std_logic_TEXTIO.ALL;	--YOU CAN USE STD_LOGIC 
  
@@ -37,10 +36,6 @@ USE ieee.std_logic_TEXTIO.ALL;	--YOU CAN USE STD_LOGIC
 --USE ieee.numeric_std.ALL;
  
 ENTITY TB_RAM_D IS
-GENERIC(
-         DATA_N: INTEGER:=16;
-			ADDR_N: INTEGER:=8
-			);
 END TB_RAM_D;
  
 ARCHITECTURE behavior OF TB_RAM_D IS 
@@ -51,9 +46,9 @@ ARCHITECTURE behavior OF TB_RAM_D IS
     PORT(
          CLK : IN  std_logic;
          WD : IN  std_logic;
-         ADDR : IN  std_logic_vector(ADDR_N-1 downto 0);
-         DIN : IN  std_logic_vector(DATA_N-1 downto 0);
-         DOUT : OUT  std_logic_vector(DATA_N-1 downto 0)
+         ADDR : IN  std_logic_vector(7 downto 0);
+         DIN : IN  std_logic_vector(15 downto 0);
+         DOUT : OUT  std_logic_vector(15 downto 0)
         );
     END COMPONENT;
     
@@ -61,11 +56,11 @@ ARCHITECTURE behavior OF TB_RAM_D IS
    --Inputs
    signal CLK : std_logic := '0';
    signal WD : std_logic := '0';
-   signal ADDR : std_logic_vector(ADDR_N-1 downto 0) := (others => '0');
-   signal DIN : std_logic_vector(DATA_N-1 downto 0) := (others => '0');
+   signal ADDR : std_logic_vector(7 downto 0) := (others => '0');
+   signal DIN : std_logic_vector(15 downto 0) := (others => '0');
 
  	--Outputs
-   signal DOUT : std_logic_vector(DATA_N-1 downto 0);
+   signal DOUT : std_logic_vector(15 downto 0);
 
    -- Clock period definitions
    constant CLK_period : time := 10 ns;
@@ -96,47 +91,42 @@ BEGIN
 	
 	file FILE_RES : TEXT;			 --	file of results																	
 	variable LINE_RES : line;
-	VARIABLE VAR_DOUT : STD_LOGIC_VECTOR(DATA_N-1 DOWNTO 0);
 	file FILE_INT : TEXT; --file of data that enters
-	
 	variable LINE_INT : line;
 	
-	VARIABLE VAR_ADDR : STD_LOGIC_VECTOR(ADDR_N-1 DOWNTO 0);  --ADDR (8 bits)
-	VARIABLE VAR_DIN : STD_LOGIC_VECTOR(DATA_N-1 DOWNTO 0); --DIN (16 bits)
+	VARIABLE VAR_ADDR : STD_LOGIC_VECTOR(7 DOWNTO 0);  --ADDR (8 bits)
+	VARIABLE VAR_DIN : STD_LOGIC_VECTOR(15 DOWNTO 0); --DIN (16 bits)
 	VARIABLE VAR_WD : STD_LOGIC;  --WD (1 bit)
 	VARIABLE CHAIN : STRING(1 TO 5);
    begin		
 		file_open(FILE_INT, "ENTRADAS.TXT", READ_MODE); 	
-		file_open(FILE_RES, "RESULTADOS.TXT", WRITE_MODE); 	
+		file_open(FILE_RES, "RESULTADO.TXT", WRITE_MODE); 	
 
 		CHAIN := "  DIN";
-		write(LINE_RES, CHAIN, right, CHAIN'LENGTH+1);	--Write" DIN"
+		write(FILE_RES, CHAIN, right, CHAIN'LENGTH+1);	--Write" DIN"
 		CHAIN := "ADDR ";
-		write(LINE_RES, CHAIN, right, CHAIN'LENGTH+1);	--Write "ADDR"
+		write(FILE_RES, CHAIN, right, CHAIN'LENGTH+1);	--Write "ADDR"
 		CHAIN := "  WD ";
-		write(LINE_RES, CHAIN, right, CHAIN'LENGTH+1);	--Write "  WD"
-		CHAIN := "DOUT "; 
-		write(LINE_RES, CHAIN, right, CHAIN'LENGTH+1);
+		write(FILE_RES, CHAIN, right, CHAIN'LENGTH+1);	--Write "  WD"
 		writeline(FILE_RES,LINE_RES);		-- Write a line of the file
 
 		WAIT FOR 100 NS;
 		FOR I IN 0 TO 15 LOOP
-			readline(FILE_INT, LINE_INT); -- Read a complete line
-			Hread(LINE_INT, VAR_DIN);
+			readline(FILE_INT,LINE_INT); -- Read a complete line
+
+			read(LINE_INT, VAR_DIN);
 			DIN <= VAR_DIN;
-			
 			Hread(LINE_INT, VAR_ADDR);
 			ADDR <= VAR_ADDR;		
 			read(LINE_INT, VAR_WD);  
 			WD <= VAR_WD;
 			
 			WAIT UNTIL RISING_EDGE(CLK);	
-			VAR_DOUT := DOUT;
-			
-			Hwrite(LINE_RES, VAR_DIN, right, 5);	--write  DIN
+
+			write(LINE_RES, VAR_DIN, right, 5);	--write  DIN
 			Hwrite(LINE_RES, VAR_ADDR, 	right, 5);	--write  ADDR
 			write(LINE_RES, VAR_WD, 	right, 5);	--write  WD
-			Hwrite(LINE_RES, VAR_DOUT, right, 5);
+
 			writeline(FILE_RES,LINE_RES);-- write a line in the file
 			
 		end loop;
