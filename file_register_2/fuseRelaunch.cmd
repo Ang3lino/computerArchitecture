@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "/home/angelos/Documents/git/computerArchitecture/file_register_2/file_reg_isim_beh.exe" -prj "/home/angelos/Documents/git/computerArchitecture/file_register_2/file_reg_beh.prj" "work.file_reg" 

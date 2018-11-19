@@ -1,0 +1,12 @@
+xst -intstyle ise -ifn "/home/angelos/Documents/git/computerArchitecture/file_register_2/file_register.xst" -ofn "/home/angelos/Documents/git/computerArchitecture/file_register_2/file_register.syr" 
+xst -intstyle ise -ifn "/home/angelos/Documents/git/computerArchitecture/file_register_2/file_register.xst" -ofn "/home/angelos/Documents/git/computerArchitecture/file_register_2/file_register.syr" 
+xst -intstyle ise -ifn "/home/angelos/Documents/git/computerArchitecture/file_register_2/file_register.xst" -ofn "/home/angelos/Documents/git/computerArchitecture/file_register_2/file_register.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -i -p xc7a100t-csg324-3 file_register.ngc file_register.ngd  
+map -intstyle ise -p xc7a100t-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o file_register_map.ncd file_register.ngd file_register.pcf 
+par -w -intstyle ise -ol high -mt off file_register_map.ncd file_register.ncd file_register.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml file_register.twx file_register.ncd -o file_register.twr file_register.pcf 
+xst -intstyle ise -ifn "/home/angelos/Documents/git/computerArchitecture/file_register_2/file_register.xst" -ofn "/home/angelos/Documents/git/computerArchitecture/file_register_2/file_register.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -i -p xc7a100t-csg324-3 file_register.ngc file_register.ngd  
+map -intstyle ise -p xc7a100t-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o file_register_map.ncd file_register.ngd file_register.pcf 
+par -w -intstyle ise -ol high -mt off file_register_map.ncd file_register.ncd file_register.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml file_register.twx file_register.ncd -o file_register.twr file_register.pcf 

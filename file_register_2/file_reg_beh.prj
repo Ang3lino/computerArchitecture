@@ -1,0 +1,2 @@
+vhdl work "src/file_register.vhd"
+vhdl work "src/file_register_tb.vhd"
