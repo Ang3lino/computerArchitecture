@@ -183,7 +183,7 @@ BEGIN
 
          --WAIT FOR clk_period;
 	 --wait until rising_edge(clk);
-	 wait until falling_edge(clk);
+	 wait until rising_edge(clk);
 
          -- the third argument of write function must be the amount of bits of de data
          -- plus one (an extra space)

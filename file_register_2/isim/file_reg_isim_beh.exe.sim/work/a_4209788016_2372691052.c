@@ -27,7 +27,7 @@ extern char *IEEE_P_3499444699;
 extern char *IEEE_P_3564397177;
 extern char *IEEE_P_2592010699;
 
-unsigned char ieee_p_2592010699_sub_13554554585326073636_503743352(char *, char *, unsigned int , unsigned int );
+unsigned char ieee_p_2592010699_sub_2763492388968962707_503743352(char *, char *, unsigned int , unsigned int );
 char *ieee_p_3499444699_sub_17544701978858283880_3536714472(char *, char *, int , int );
 void ieee_p_3564397177_sub_1675032430035817134_91900896(char *, char *, char *, char *);
 void ieee_p_3564397177_sub_2258168291854845616_91900896(char *, char *, char *, char *, char *, unsigned char , int );
@@ -685,7 +685,7 @@ LAB24:    t4 = (t0 + 5560);
     goto LAB12;
 
 LAB25:    t3 = (t0 + 2272U);
-    t22 = ieee_p_2592010699_sub_13554554585326073636_503743352(IEEE_P_2592010699, t3, 0U, 0U);
+    t22 = ieee_p_2592010699_sub_2763492388968962707_503743352(IEEE_P_2592010699, t3, 0U, 0U);
     if (t22 == 1)
         goto LAB24;
     else

@@ -29,25 +29,29 @@ architecture arch of file_register is
 
 begin
 
-    writing: process(clk)
+    writing: process(clk, write_data, she, write_register, we)
+        variable tmp_reg: std_logic_vector(nbits - 1 downto 0);
     begin
-        if rising_edge(clk) then 
-            if we = '1' then -- write data
-                buff(conv_integer(write_register)) <= write_data;
-            elsif she = '1' then 
-                if dir = '1' then 
-                    buff(conv_integer(write_register)) <= TO_STDLOGICVECTOR(TO_BITVECTOR(
-                        buff( conv_integer(read_register_1)) ) SLL CONV_INTEGER(shamt) );
-                else
-                    buff(conv_integer(write_register)) <= TO_STDLOGICVECTOR(TO_BITVECTOR(
-                        buff( conv_integer(read_register_1)) ) SRL CONV_INTEGER(shamt) );
-                end if;
+
+        if she = '1' then 
+            if dir = '1' then 
+                tmp_reg := TO_STDLOGICVECTOR(TO_BITVECTOR(
+                    buff( conv_integer(read_register_1)) ) SLL CONV_INTEGER(shamt) );
+            else
+                tmp_reg := TO_STDLOGICVECTOR(TO_BITVECTOR(
+                    buff( conv_integer(read_register_1)) ) SRL CONV_INTEGER(shamt) );
             end if;
+        else 
+            tmp_reg := write_data;
         end if;
+
+        if rising_edge(clk) and we = '1' then 
+            buff(conv_integer(write_register)) <= tmp_reg;
+        end if;
+
     end process;
 
     read_data_1 <= buff(conv_integer(read_register_1));
     read_data_2 <= buff(conv_integer(read_register_2));
-
 
 end architecture ; -- arch

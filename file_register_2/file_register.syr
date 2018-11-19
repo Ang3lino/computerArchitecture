@@ -4,15 +4,15 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Reading design: file_register.prj
@@ -117,6 +117,9 @@ Parsing architecture <arch> of entity <file_register>.
 =========================================================================
 
 Elaborating entity <file_register> (architecture <arch>) with generics from library <work>.
+WARNING:HDLCompiler:92 - "/home/angelos/Documents/git/computerArchitecture/file_register_2/src/file_register.vhd" Line 37: dir should be on the sensitivity list of the process
+WARNING:HDLCompiler:92 - "/home/angelos/Documents/git/computerArchitecture/file_register_2/src/file_register.vhd" Line 39: buff should be on the sensitivity list of the process
+WARNING:HDLCompiler:92 - "/home/angelos/Documents/git/computerArchitecture/file_register_2/src/file_register.vhd" Line 42: buff should be on the sensitivity list of the process
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -126,12 +129,12 @@ Synthesizing Unit <file_register>.
     Related source file is "/home/angelos/Documents/git/computerArchitecture/file_register_2/src/file_register.vhd".
         nbits = 16
         naddr = 4
-    Found 16-bit shifter logical left for signal <BUS_0018_shamt[3]_shift_left_2_OUT> created at line 39
-    Found 16-bit shifter logical right for signal <BUS_0051_shamt[3]_shift_right_5_OUT> created at line 42
+    Found 16-bit shifter logical left for signal <BUS_0001_shamt[3]_shift_left_1_OUT> created at line 38
+    Found 16-bit shifter logical right for signal <BUS_0017_shamt[3]_shift_right_3_OUT> created at line 41
     Found 16x16-bit dual-port RAM <Mram_buff> for signal <buff>.
     Summary:
 	inferred   2 RAM(s).
-	inferred   5 Multiplexer(s).
+	inferred   2 Multiplexer(s).
 	inferred   2 Combinational logic shifter(s).
 Unit <file_register> synthesized.
 
@@ -141,9 +144,8 @@ HDL Synthesis Report
 Macro Statistics
 # RAMs                                                 : 2
  16x16-bit dual-port RAM                               : 2
-# Multiplexers                                         : 5
- 1-bit 2-to-1 multiplexer                              : 2
- 16-bit 2-to-1 multiplexer                             : 3
+# Multiplexers                                         : 2
+ 16-bit 2-to-1 multiplexer                             : 2
 # Logic shifters                                       : 2
  16-bit shifter logical left                           : 1
  16-bit shifter logical right                          : 1
@@ -163,9 +165,9 @@ INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_buff> will be implemented on LUTs ei
     | Port A                                                              |
     |     aspect ratio   | 16-word x 16-bit                    |          |
     |     clkA           | connected to signal <clk>           | rise     |
-    |     weA            | connected to internal node          | high     |
+    |     weA            | connected to signal <we>            | high     |
     |     addrA          | connected to signal <write_register> |          |
-    |     diA            | connected to signal <_n0030>        |          |
+    |     diA            | connected to signal <writing.tmp_reg> |          |
     -----------------------------------------------------------------------
     | Port B                                                              |
     |     aspect ratio   | 16-word x 16-bit                    |          |
@@ -179,9 +181,9 @@ INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_buff1> will be implemented on LUTs e
     | Port A                                                              |
     |     aspect ratio   | 16-word x 16-bit                    |          |
     |     clkA           | connected to signal <clk>           | rise     |
-    |     weA            | connected to internal node          | high     |
+    |     weA            | connected to signal <we>            | high     |
     |     addrA          | connected to signal <write_register> |          |
-    |     diA            | connected to signal <_n0030>        |          |
+    |     diA            | connected to signal <writing.tmp_reg> |          |
     -----------------------------------------------------------------------
     | Port B                                                              |
     |     aspect ratio   | 16-word x 16-bit                    |          |
@@ -196,9 +198,8 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # RAMs                                                 : 2
  16x16-bit dual-port distributed RAM                   : 2
-# Multiplexers                                         : 5
- 1-bit 2-to-1 multiplexer                              : 2
- 16-bit 2-to-1 multiplexer                             : 3
+# Multiplexers                                         : 2
+ 16-bit 2-to-1 multiplexer                             : 2
 # Logic shifters                                       : 2
  16-bit shifter logical left                           : 1
  16-bit shifter logical right                          : 1
@@ -242,13 +243,13 @@ Top Level Output File Name         : file_register.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 114
+# BELS                             : 101
 #      GND                         : 1
-#      LUT2                        : 15
-#      LUT3                        : 18
-#      LUT4                        : 11
-#      LUT5                        : 9
-#      LUT6                        : 58
+#      LUT2                        : 2
+#      LUT3                        : 16
+#      LUT4                        : 9
+#      LUT5                        : 15
+#      LUT6                        : 56
 #      MUXF7                       : 2
 # RAMS                             : 12
 #      RAM32M                      : 4
@@ -266,16 +267,16 @@ Selected Device : 7a100tcsg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice LUTs:                  143  out of  63400     0%  
-    Number used as Logic:               111  out of  63400     0%  
+ Number of Slice LUTs:                  130  out of  63400     0%  
+    Number used as Logic:                98  out of  63400     0%  
     Number used as Memory:               32  out of  19000     0%  
        Number used as RAM:               32
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    143
-   Number with an unused Flip Flop:     143  out of    143   100%  
-   Number with an unused LUT:             0  out of    143     0%  
-   Number of fully used LUT-FF pairs:     0  out of    143     0%  
+ Number of LUT Flip Flop pairs used:    130
+   Number with an unused Flip Flop:     130  out of    130   100%  
+   Number with an unused LUT:             0  out of    130     0%  
+   Number of fully used LUT-FF pairs:     0  out of    130     0%  
    Number of unique control sets:         0
 
 IO Utilization: 
@@ -317,10 +318,10 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 3.581ns (Maximum Frequency: 279.283MHz)
-   Minimum input arrival time before clock: 2.871ns
-   Maximum output required time after clock: 1.685ns
-   Maximum combinational path delay: 0.946ns
+   Minimum period: 3.585ns (Maximum Frequency: 278.956MHz)
+   Minimum input arrival time before clock: 2.862ns
+   Maximum output required time after clock: 1.692ns
+   Maximum combinational path delay: 0.950ns
 
 Timing Details:
 ---------------
@@ -328,10 +329,10 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 3.581ns (frequency: 279.283MHz)
-  Total number of paths / destination ports: 546 / 32
+  Clock period: 3.585ns (frequency: 278.956MHz)
+  Total number of paths / destination ports: 594 / 32
 -------------------------------------------------------------------------
-Delay:               3.581ns (Levels of Logic = 3)
+Delay:               3.585ns (Levels of Logic = 3)
   Source:            Mram_buff3 (RAM)
   Destination:       Mram_buff3 (RAM)
   Source Clock:      clk rising
@@ -341,20 +342,20 @@ Delay:               3.581ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     RAM32M:WCLK->DOA1    11   1.345   0.603  Mram_buff3 (read_data_1_7_OBUF)
+     RAM32M:WCLK->DOA1    12   1.345   0.607  Mram_buff3 (read_data_1_7_OBUF)
      LUT6:I2->O            1   0.097   0.511  Sh81 (Sh8)
-     LUT6:I3->O            1   0.097   0.295  Mmux__n0030152 (Mmux__n0030151)
-     LUT6:I5->O            2   0.097   0.283  Mmux__n0030153 (_n0030<8>)
+     LUT6:I3->O            1   0.097   0.295  Mmux_writing.tmp_reg152 (Mmux_writing.tmp_reg151)
+     LUT5:I4->O            2   0.097   0.283  Mmux_writing.tmp_reg153 (writing.tmp_reg<8>)
      RAM32M:DIB0               0.252          Mram_buff3
     ----------------------------------------
-    Total                      3.581ns (1.888ns logic, 1.693ns route)
+    Total                      3.585ns (1.888ns logic, 1.697ns route)
                                        (52.7% logic, 47.3% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 2988 / 124
+  Total number of paths / destination ports: 3140 / 124
 -------------------------------------------------------------------------
-Offset:              2.871ns (Levels of Logic = 5)
+Offset:              2.862ns (Levels of Logic = 5)
   Source:            read_register_1<0> (PAD)
   Destination:       Mram_buff11 (RAM)
   Destination Clock: clk rising
@@ -364,52 +365,52 @@ Offset:              2.871ns (Levels of Logic = 5)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            10   0.001   0.321  read_register_1_0_IBUF (read_register_1_0_IBUF)
-     RAM32X1D:DPRA0->DPO    9   0.097   0.593  Mram_buff42 (read_data_1_13_OBUF)
+     RAM32X1D:DPRA0->DPO    7   0.097   0.584  Mram_buff42 (read_data_1_13_OBUF)
      LUT6:I2->O            4   0.097   0.525  Sh441 (Sh44)
-     LUT6:I3->O            1   0.097   0.511  Mmux__n003073 (Mmux__n003072)
-     LUT6:I3->O            2   0.097   0.283  Mmux__n003077 (_n0030<16>)
+     LUT6:I3->O            1   0.097   0.511  Mmux_writing.tmp_reg17 (Mmux_writing.tmp_reg1)
+     LUT6:I3->O            2   0.097   0.283  Mmux_writing.tmp_reg111 (writing.tmp_reg<0>)
      RAM32M:DIA0               0.248          Mram_buff11
     ----------------------------------------
-    Total                      2.871ns (0.637ns logic, 2.234ns route)
-                                       (22.2% logic, 77.8% route)
+    Total                      2.862ns (0.637ns logic, 2.225ns route)
+                                       (22.3% logic, 77.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
   Total number of paths / destination ports: 32 / 32
 -------------------------------------------------------------------------
-Offset:              1.685ns (Levels of Logic = 1)
-  Source:            Mram_buff2 (RAM)
-  Destination:       read_data_1<5> (PAD)
+Offset:              1.692ns (Levels of Logic = 1)
+  Source:            Mram_buff3 (RAM)
+  Destination:       read_data_1<8> (PAD)
   Source Clock:      clk rising
 
-  Data Path: Mram_buff2 to read_data_1<5>
+  Data Path: Mram_buff3 to read_data_1<8>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     RAM32M:WCLK->DOC1     9   1.369   0.316  Mram_buff2 (read_data_1_5_OBUF)
-     OBUF:I->O                 0.000          read_data_1_5_OBUF (read_data_1<5>)
+     RAM32M:WCLK->DOB0    12   1.362   0.330  Mram_buff3 (read_data_1_8_OBUF)
+     OBUF:I->O                 0.000          read_data_1_8_OBUF (read_data_1<8>)
     ----------------------------------------
-    Total                      1.685ns (1.369ns logic, 0.316ns route)
-                                       (81.2% logic, 18.8% route)
+    Total                      1.692ns (1.362ns logic, 0.330ns route)
+                                       (80.5% logic, 19.5% route)
 
 =========================================================================
 Timing constraint: Default path analysis
   Total number of paths / destination ports: 128 / 32
 -------------------------------------------------------------------------
-Delay:               0.946ns (Levels of Logic = 3)
+Delay:               0.950ns (Levels of Logic = 3)
   Source:            read_register_1<3> (PAD)
-  Destination:       read_data_1<7> (PAD)
+  Destination:       read_data_1<8> (PAD)
 
-  Data Path: read_register_1<3> to read_data_1<7>
+  Data Path: read_register_1<3> to read_data_1<8>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            10   0.001   0.321  read_register_1_3_IBUF (read_register_1_3_IBUF)
-     RAM32M:ADDRA3->DOA0   11   0.299   0.326  Mram_buff2 (read_data_1_0_OBUF)
-     OBUF:I->O                 0.000          read_data_1_0_OBUF (read_data_1<0>)
+     RAM32M:ADDRA3->DOA1   12   0.299   0.330  Mram_buff3 (read_data_1_7_OBUF)
+     OBUF:I->O                 0.000          read_data_1_7_OBUF (read_data_1<7>)
     ----------------------------------------
-    Total                      0.946ns (0.300ns logic, 0.646ns route)
-                                       (31.7% logic, 68.3% route)
+    Total                      0.950ns (0.300ns logic, 0.650ns route)
+                                       (31.6% logic, 68.4% route)
 
 =========================================================================
 
@@ -421,21 +422,21 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    3.581|         |         |         |
+clk            |    3.585|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 12.00 secs
-Total CPU time to Xst completion: 8.92 secs
+Total CPU time to Xst completion: 8.86 secs
  
 --> 
 
 
-Total memory usage is 503344 kilobytes
+Total memory usage is 503260 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    0 (   0 filtered)
+Number of warnings :    3 (   0 filtered)
 Number of infos    :    2 (   0 filtered)
 
