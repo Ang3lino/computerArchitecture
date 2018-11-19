@@ -1,0 +1,2 @@
+vhdl isim_temp "src/stack.vhd"
+vhdl isim_temp "src/stack_tb.vhd"

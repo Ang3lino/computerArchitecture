@@ -1,0 +1,2 @@
+vhdl work "src/stack.vhd"
+vhdl work "src/stack_tb.vhd"

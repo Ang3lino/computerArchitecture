@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "/home/angelos/Documents/git/computerArchitecture/stack2/stack_tb_isim_beh.exe" -prj "/home/angelos/Documents/git/computerArchitecture/stack2/stack_tb_beh.prj" "work.stack_tb" 
