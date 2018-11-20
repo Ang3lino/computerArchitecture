@@ -3,7 +3,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
--- 32 x 20 mem
+-- 16 x 20 mem
 entity mem_fun is 
     generic (
         naddr: integer := 4;

@@ -3,7 +3,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
--- 32 x 20 mem
+-- 32s x 20 mem
 entity mem_opcode is 
     generic (
         naddr: integer := 5;
