@@ -27,7 +27,7 @@ architecture arch of mem_opcode is
     constant swi  : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"1"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0000"&"1"&"1"&"0";
     constant sw   : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"1"&"0"&"0"&"0"&"0"&"0"&"1"&"0"&"1"&"0011"&"0"&"1"&"0";
     
-    
+
     --                                            u   d   w   s   s   s   s   d   w   l   s   s   s   aluo   s   w   s
     --                                            p   w   p   d   r   w   h   i   r   f   e   o   o   p      d   d   r       
     --                                                    c   m   2   d   e   r           x   p   p          m             
@@ -72,10 +72,10 @@ architecture arch of mem_opcode is
     -- others (type r too)
     constant nop  : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0000"&"0"&"0"&"0";
 
-    -- this is used when the condition for jumping is satisfied
+    -- microinstruction used when the condition for jumping is satisfied
     constant senok: std_logic_vector(d'range) := "0"&"0"&"1"&"1"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"1"&"1"&"0011"&"0"&"0"&"1";
 
-    TYPE ARR IS ARRAY (0 TO 2 ** BADDR - 1) OF STD_LOGIC_VECTOR(df'RANGE); 
+    TYPE ARR IS ARRAY (0 TO 2 ** BADDR - 1) OF STD_LOGIC_VECTOR(d'RANGE); 
 
 	CONSTANT ROM : ARR := (
         "0000" & "1000" & "0"
