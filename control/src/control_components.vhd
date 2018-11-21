@@ -48,7 +48,7 @@ component control_unit is
 		neq : in  std_logic;
 		lt : in  std_logic;
 		le : in  std_logic;
-		gt : in std_logic;
+		g : in std_logic; -- gt
 		get : in  std_logic;
 		clk : in  std_logic; -- master inputs
 		clr : in  std_logic;

@@ -24,7 +24,7 @@ entity control_unit is
 		neq : in  std_logic;
 		lt : in  std_logic;
 		le : in  std_logic;
-		gt : in std_logic;
+		g : in std_logic; -- gt
 		get : in  std_logic;
 		clk : in  std_logic; -- master inputs
 		clr : in  std_logic;
@@ -39,14 +39,14 @@ architecture programa of control_unit is
 	signal edo_act, edo_sgte : estados;
 begin
 
-	process( edo_actual, tipor, beqi, bneqi, blti, bleti, bgti, bgeti, eq, neq, lt, le, gt, get, na )
+	process( edo_act, tipor, beqi, bneqi, blti, bleti, bgti, bgeti, eq, neq, lt, le, g, get, na )
 	begin
 		sm <= '0';
 		sdopc <= '0';
 
-		case edo_actual is
+		case edo_act is
 			when a =>
-				edo_sig <= a;
+				edo_sgte <= a;
 				if(tipor = '0') then
 					sm <= '1';
 					if   (beqi = '1') and na = '0' and eq = '1' then
@@ -57,11 +57,11 @@ begin
 						sdopc <= '1';
 					elsif(bleti = '1') and na = '0' and le = '1' then
 						sdopc <= '1';
-					elsif(bgti = '1') and na = '0' and gt = '1' then
+					elsif(bgti = '1') and na = '0' and g = '1' then
 						sdopc <= '1';
 					elsif(bgeti = '1') and na = '0' and get = '1' then
 						sdopc <= '1';
-					elsif (beqi nor beqi nor bneqi nor blti nor bleti nor bgti nor bgeti) = '1' then -- all zeroes
+					elsif (beqi = '1') and (beqi = '1') and bneqi = '1' and blti = '1' and bleti = '1' and bgti = '1' and bgeti = '1' then -- all zeroes
 						sdopc <= '1';
 					end if;
 				end if;

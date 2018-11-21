@@ -21,23 +21,23 @@ architecture arch of mem_fun is
     --                                                         c   m   2   d   e   r           x   p   p          m             
     --                                                             p                           t   1   2          d
     -- arithmetic instructions
-    constant inst_add  : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"0"&"0"&"0"&"0011"&"0"&"0"&"1";
-    constant inst_sub  : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"0"&"0"&"0"&"0111"&"0"&"0"&"1";
+    constant inst_add  : std_logic_vector(df'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"0"&"0"&"0"&"0011"&"0"&"0"&"1";
+    constant inst_sub  : std_logic_vector(df'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"0"&"0"&"0"&"0111"&"0"&"0"&"1";
 
     -- logic instructions
-    constant inst_and  : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"0000"&"0"&"0"&"1";
-    constant inst_or   : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"0001"&"0"&"0"&"1";
-    constant inst_xor  : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"0010"&"0"&"0"&"1";
-    constant inst_nand : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"1101"&"0"&"0"&"1";
-    constant inst_nor  : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"1100"&"0"&"0"&"1";
-    constant inst_xnor : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"1010"&"0"&"0"&"1";
-    constant inst_not  : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"1101"&"0"&"0"&"1";
+    constant inst_and  : std_logic_vector(df'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"0000"&"0"&"0"&"1";
+    constant inst_or   : std_logic_vector(df'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"0001"&"0"&"0"&"1";
+    constant inst_xor  : std_logic_vector(df'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"0010"&"0"&"0"&"1";
+    constant inst_nand : std_logic_vector(df'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"1101"&"0"&"0"&"1";
+    constant inst_nor  : std_logic_vector(df'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"1100"&"0"&"0"&"1";
+    constant inst_xnor : std_logic_vector(df'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"1010"&"0"&"0"&"1";
+    constant inst_not  : std_logic_vector(df'range) := "0"&"0"&"0"&"0"&"0"&"1"&"0"&"0"&"1"&"1"&"1"&"0"&"1"&"1101"&"0"&"0"&"1";
 
     -- shifting
-    constant inst_sll  : std_logic_vector(d'range) := "0"&"0"&"0"&"0"&"0"&"1"&"1"&"0"&"0"&"0"&"0"&"0"&"0"&"0000"&"0"&"0"&"0";
-    constant inst_srl  : std_logic_vector(d'range) := "0"&"1"&"0"&"0"&"0"&"1"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0000"&"0"&"0"&"0";
+    constant inst_sll  : std_logic_vector(df'range) := "0"&"0"&"0"&"0"&"0"&"1"&"1"&"0"&"0"&"0"&"0"&"0"&"0"&"0000"&"0"&"0"&"0";
+    constant inst_srl  : std_logic_vector(df'range) := "0"&"1"&"0"&"0"&"0"&"1"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0000"&"0"&"0"&"0";
 
-    TYPE ARR IS ARRAY (0 TO 2 ** BADDR - 1) OF STD_LOGIC_VECTOR(d'RANGE); 
+    TYPE ARR IS ARRAY (0 TO 2 ** naddr - 1) OF STD_LOGIC_VECTOR(df'RANGE); 
 
 	CONSTANT ROM : ARR := (
         inst_add , -- 0 

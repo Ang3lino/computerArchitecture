@@ -65,7 +65,9 @@ architecture arch of mem_opcode is
     --                                            p   w   p   d   r   w   h   i   r   f   e   o   o   p      d   d   r       
     --                                                    c   m   2   d   e   r           x   p   p          m             
     --                                                        p                           t   1   2          d
-    -- subroutines
+    --                                            1   1   1   1   1   1   1   1   1   1                                            
+    --                                            9   8   7   6   5   4   3   2   1   0   9   8   7   6543   2   1   0  
+    -- subroutines                                                                    
     constant call : std_logic_vector(d'range) := "1"&"0"&"1"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0000"&"0"&"0"&"0";
     constant ret  : std_logic_vector(d'range) := "0"&"1"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"0000"&"0"&"0"&"0";
 
@@ -75,12 +77,7 @@ architecture arch of mem_opcode is
     -- microinstruction used when the condition for jumping is satisfied
     constant senok: std_logic_vector(d'range) := "0"&"0"&"1"&"1"&"0"&"0"&"0"&"0"&"0"&"0"&"0"&"1"&"1"&"0011"&"0"&"0"&"1";
 
-    TYPE ARR IS ARRAY (0 TO 2 ** BADDR - 1) OF STD_LOGIC_VECTOR(d'RANGE); 
-
-	CONSTANT ROM : ARR := (
-        "0000" & "1000" & "0"
-		OTHERS => (OTHERS => '0')
-    );
+    TYPE ARR IS ARRAY (0 TO 2 ** naddr - 1) OF STD_LOGIC_VECTOR(d'RANGE); 
 
 	CONSTANT ROM : ARR := (
         senok, -- 0 
