@@ -25,8 +25,8 @@ entity program_memory is
 	Generic (BADDR: Integer:=16;
 			  BDATA: Integer:=25 );
     Port ( A : in  STD_LOGIC_VECTOR (BADDR-1 downto 0);
-           D : out  STD_LOGIC_VECTOR (BDATA-1 downto 0);
-			  CLK: in STD_LOGIC);
+		   D : out  STD_LOGIC_VECTOR (BDATA-1 downto 0)
+	);
 end program_memory;
 
 architecture BEHAVIOR of program_memory is
@@ -101,10 +101,5 @@ architecture BEHAVIOR of program_memory is
 
 begin
 
-	PMP: PROCESS(CLK)
-	BEGIN
-		IF(RISING_EDGE(CLK)) THEN
-			D <= ROM( CONV_INTEGER(A) );
-		END IF;
-	END PROCESS PMP;
+	D <= ROM( CONV_INTEGER(A) );
 end BEHAVIOR;

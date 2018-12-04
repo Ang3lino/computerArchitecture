@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "/home/angelos/Documents/git/computerArchitecture/finalBoss/counter_tb_isim_beh.exe" -prj "/home/angelos/Documents/git/computerArchitecture/finalBoss/counter_tb_beh.prj" "work.counter_tb" 

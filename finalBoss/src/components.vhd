@@ -29,13 +29,12 @@ component MEMORIA_DATOS is
 				BDATA : INTEGER := 16; --Bus de datos
 				BADDR : INTEGER := 16	  --Bus de direcciones
 	); Port ( 
-	    BUS_DATOS_ENTRADA : in  STD_LOGIC_VECTOR  ( BDATA - 1 downto 0);
-        BUS_DATOS_SALIDA	 : out  STD_LOGIC_VECTOR ( BDATA - 1 downto 0);
+	    din : in  STD_LOGIC_VECTOR  ( BDATA - 1 downto 0);
+        dout	 : out  STD_LOGIC_VECTOR ( BDATA - 1 downto 0);
         ADR : in  STD_LOGIC_VECTOR (BADDR-1 downto 0);
         CLK : in  STD_LOGIC;
         --WRITE ENABLE
-        WD : in  STD_LOGIC;
-        RD : in STD_LOGIC
+        WD : in  STD_LOGIC
 	);
 end component;
 
@@ -70,17 +69,21 @@ component file_register is
 end component;
 
 component DIVISOR is
-    Port ( OSC_CLK : in  STD_LOGIC;
-           CLR : in  STD_LOGIC;
-           CLK : out  STD_LOGIC);
+	generic (
+		n: integer := 25
+	); Port ( 
+        OSC_CLK : in  STD_LOGIC;
+        diven: in std_logic;
+        CLR : in  STD_LOGIC;
+        CLK : out  STD_LOGIC);
 end component;
 
 component program_memory is
 	Generic (BADDR: Integer:=16;
 			  BDATA: Integer:=25 );
     Port ( A : in  STD_LOGIC_VECTOR (BADDR-1 downto 0);
-           D : out  STD_LOGIC_VECTOR (BDATA-1 downto 0);
-			  CLK: in STD_LOGIC);
+           D : out  STD_LOGIC_VECTOR (BDATA-1 downto 0)
+    );
 end component;
 
 component stack is

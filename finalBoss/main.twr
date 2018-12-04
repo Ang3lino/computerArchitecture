@@ -3,7 +3,7 @@ Release 14.7 Trace  (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/trce -intstyle ise -v 3 -s 3 -n
-3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf PORTS.ucf
+3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf
 
 Design file:              main.ncd
 Physical constraint file: main.pcf
@@ -31,54 +31,130 @@ Data Sheet report:
 -----------------
 All values displayed in nanoseconds (ns)
 
-Setup/Hold to clock CLK
+Setup/Hold to clock OSC
 ------------+------------+------------+------------+------------+------------------+--------+
             |Max Setup to|  Process   |Max Hold to |  Process   |                  | Clock  |
 Source      | clk (edge) |   Corner   | clk (edge) |   Corner   |Internal Clock(s) | Phase  |
 ------------+------------+------------+------------+------------+------------------+--------+
-CLR         |    0.728(R)|      FAST  |    0.803(R)|      SLOW  |CLK_BUFGP         |   0.000|
+clr         |   -0.480(R)|      FAST  |    3.676(R)|      SLOW  |CLK_BUFG          |   0.000|
+            |   -0.603(F)|      FAST  |    3.359(F)|      SLOW  |CLK_BUFG          |   0.000|
+            |    0.481(R)|      FAST  |    1.458(R)|      SLOW  |OSC_IBUF_BUFG     |   0.000|
 ------------+------------+------------+------------+------------+------------------+--------+
 
-Clock CLK to Pad
-------------+-----------------+------------+-----------------+------------+------------------+--------+
-            |Max (slowest) clk|  Process   |Min (fastest) clk|  Process   |                  | Clock  |
-Destination |  (edge) to PAD  |   Corner   |  (edge) to PAD  |   Corner   |Internal Clock(s) | Phase  |
-------------+-----------------+------------+-----------------+------------+------------------+--------+
-datain<0>   |        17.515(R)|      SLOW  |         5.828(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<1>   |        17.142(R)|      SLOW  |         5.654(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<2>   |        17.745(R)|      SLOW  |         5.952(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<3>   |        16.767(R)|      SLOW  |         5.444(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<4>   |        16.948(R)|      SLOW  |         5.540(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<5>   |        16.928(R)|      SLOW  |         5.512(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<6>   |        17.687(R)|      SLOW  |         5.915(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<7>   |        17.295(R)|      SLOW  |         5.691(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<8>   |        17.383(R)|      SLOW  |         5.761(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<9>   |        17.137(R)|      SLOW  |         5.664(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<10>  |        17.616(R)|      SLOW  |         5.873(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<11>  |        17.067(R)|      SLOW  |         5.594(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<12>  |        16.654(R)|      SLOW  |         5.402(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<13>  |        17.013(R)|      SLOW  |         5.577(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<14>  |        16.948(R)|      SLOW  |         5.552(R)|      FAST  |CLK_BUFGP         |   0.000|
-datain<15>  |        17.087(R)|      SLOW  |         5.641(R)|      FAST  |CLK_BUFGP         |   0.000|
-------------+-----------------+------------+-----------------+------------+------------------+--------+
+Setup/Hold to clock diven
+------------+------------+------------+------------+------------+------------------+--------+
+            |Max Setup to|  Process   |Max Hold to |  Process   |                  | Clock  |
+Source      | clk (edge) |   Corner   | clk (edge) |   Corner   |Internal Clock(s) | Phase  |
+------------+------------+------------+------------+------------+------------------+--------+
+clr         |   -0.201(R)|      FAST  |    3.248(R)|      SLOW  |CLK_BUFG          |   0.000|
+            |   -0.324(F)|      FAST  |    2.931(F)|      SLOW  |CLK_BUFG          |   0.000|
+------------+------------+------------+------------+------------+------------------+--------+
 
-Clock to Setup on destination clock CLK
+Clock OSC to Pad
+---------------+-----------------+------------+-----------------+------------+------------------+--------+
+               |Max (slowest) clk|  Process   |Min (fastest) clk|  Process   |                  | Clock  |
+Destination    |  (edge) to PAD  |   Corner   |  (edge) to PAD  |   Corner   |Internal Clock(s) | Phase  |
+---------------+-----------------+------------+-----------------+------------+------------------+--------+
+salida_leds<0> |        17.486(R)|      SLOW  |         6.217(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.289(F)|      SLOW  |         7.721(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<1> |        17.536(R)|      SLOW  |         6.216(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.339(F)|      SLOW  |         7.735(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<2> |        17.407(R)|      SLOW  |         6.057(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.210(F)|      SLOW  |         7.660(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<3> |        17.725(R)|      SLOW  |         6.365(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.528(F)|      SLOW  |         7.974(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<4> |        17.999(R)|      SLOW  |         6.524(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.802(F)|      SLOW  |         8.121(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<5> |        18.046(R)|      SLOW  |         6.608(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.849(F)|      SLOW  |         8.210(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<6> |        18.021(R)|      SLOW  |         6.835(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.824(F)|      SLOW  |         8.164(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<7> |        18.064(R)|      SLOW  |         6.848(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.867(F)|      SLOW  |         8.192(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<8> |        18.121(R)|      SLOW  |         6.799(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.924(F)|      SLOW  |         8.222(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<9> |        17.823(R)|      SLOW  |         6.617(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.626(F)|      SLOW  |         8.046(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<10>|        18.296(R)|      SLOW  |         6.927(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        17.099(F)|      SLOW  |         8.351(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<11>|        17.069(R)|      SLOW  |         6.080(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        15.872(F)|      SLOW  |         7.509(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<12>|        19.083(R)|      SLOW  |         7.615(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        17.886(F)|      SLOW  |         8.885(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<13>|        19.350(R)|      SLOW  |         7.856(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        18.153(F)|      SLOW  |         9.120(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<14>|        19.289(R)|      SLOW  |         7.687(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        18.092(F)|      SLOW  |         8.872(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<15>|        19.142(R)|      SLOW  |         7.588(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        17.945(F)|      SLOW  |         8.758(F)|      FAST  |CLK_BUFG          |   0.000|
+---------------+-----------------+------------+-----------------+------------+------------------+--------+
+
+Clock diven to Pad
+---------------+-----------------+------------+-----------------+------------+------------------+--------+
+               |Max (slowest) clk|  Process   |Min (fastest) clk|  Process   |                  | Clock  |
+Destination    |  (edge) to PAD  |   Corner   |  (edge) to PAD  |   Corner   |Internal Clock(s) | Phase  |
+---------------+-----------------+------------+-----------------+------------+------------------+--------+
+salida_leds<0> |        17.058(R)|      SLOW  |         5.938(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        15.861(F)|      SLOW  |         7.442(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<1> |        17.108(R)|      SLOW  |         5.937(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        15.911(F)|      SLOW  |         7.456(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<2> |        16.979(R)|      SLOW  |         5.778(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        15.782(F)|      SLOW  |         7.381(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<3> |        17.297(R)|      SLOW  |         6.086(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.100(F)|      SLOW  |         7.695(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<4> |        17.571(R)|      SLOW  |         6.245(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.374(F)|      SLOW  |         7.842(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<5> |        17.618(R)|      SLOW  |         6.329(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.421(F)|      SLOW  |         7.931(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<6> |        17.593(R)|      SLOW  |         6.556(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.396(F)|      SLOW  |         7.885(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<7> |        17.636(R)|      SLOW  |         6.569(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.439(F)|      SLOW  |         7.913(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<8> |        17.693(R)|      SLOW  |         6.520(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.496(F)|      SLOW  |         7.943(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<9> |        17.395(R)|      SLOW  |         6.338(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.198(F)|      SLOW  |         7.767(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<10>|        17.868(R)|      SLOW  |         6.648(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        16.671(F)|      SLOW  |         8.072(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<11>|        16.641(R)|      SLOW  |         5.801(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        15.444(F)|      SLOW  |         7.230(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<12>|        18.655(R)|      SLOW  |         7.336(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        17.458(F)|      SLOW  |         8.606(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<13>|        18.922(R)|      SLOW  |         7.577(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        17.725(F)|      SLOW  |         8.841(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<14>|        18.861(R)|      SLOW  |         7.408(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        17.664(F)|      SLOW  |         8.593(F)|      FAST  |CLK_BUFG          |   0.000|
+salida_leds<15>|        18.714(R)|      SLOW  |         7.309(R)|      FAST  |CLK_BUFG          |   0.000|
+               |        17.517(F)|      SLOW  |         8.479(F)|      FAST  |CLK_BUFG          |   0.000|
+---------------+-----------------+------------+-----------------+------------+------------------+--------+
+
+Clock to Setup on destination clock OSC
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLK            |    1.809|         |         |         |
+OSC            |   23.832|   22.716|    8.982|    7.738|
+diven          |   23.832|   22.716|    8.982|    7.738|
+---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock diven
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+OSC            |   23.832|   22.716|    8.982|    7.738|
+diven          |   23.832|   22.716|    8.982|    7.738|
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Tue Dec  4 11:03:53 2018 
+Analysis completed Tue Dec  4 15:18:43 2018 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 780 MB
+Peak Memory Usage: 1348 MB
 
 
 

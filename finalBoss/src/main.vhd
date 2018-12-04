@@ -1,146 +1,120 @@
-
 library IEEE;
-LIBRARY WORK;
+library WORK;
 
+use WORK.components.ALL;
 use IEEE.STD_LOGIC_1164.ALL;
-USE WORK.components.ALL;
 
-ENTITY main IS
-	PORT ( 
-		CLK	: IN STD_LOGIC;
-		CLR	: IN STD_LOGIC;
-		datain: inout std_logic_vector(15 downto 0)
-	);
-END main;
+entity main is
+    Port ( OSC : in  STD_LOGIC;
+           clr : in  STD_LOGIC;
+			  diven: in std_logic;
+			  salida_leds : out std_logic_vector(15 downto 0));
+end main;
 
-ARCHITECTURE ESCOMIPS OF main IS
+architecture Behavioral of main is
+	SIGNAL CLK: STD_LOGIC;
+	signal INS: std_logic_vector(19 downto 0);
+	signal principal: std_logic_vector(24 downto 0);
+	signal flags: std_logic_vector(3 downto 0);
+	signal sal_sdmp, sal_swd, sal_sext, sal_sop1, sal_sop2, sal_sdmd, sal_sr: std_logic_vector(15 downto 0);
+	signal sal_sr2: std_logic_vector(3 downto 0);
+	signal read_data1, read_data2: std_logic_vector(15 downto 0);
+	signal sal_alu, sal_pila, sal_ram: std_logic_vector(15 downto 0);
+	signal sal_sgn, sal_dir: std_logic_vector(15 downto 0);
+begin
 
-	signal clk_reduced : STD_LOGIC;
-    signal SAL_ALU : STD_LOGIC_VECTOR(15 DOWNTO 0);
-	signal wd: std_logic;
-	signal BANDAS : STD_LOGIC_VECTOR(3 DOWNTO 0);
-
-
-    --SIGNAL CLK 	:	STD_LOGIC;
-    SIGNAL SALIDA_CONTROL : STD_LOGIC_VECTOR(19 DOWNTO 0);
-    SIGNAL SALIDA_PILA : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL SALIDA_SOP1 : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL SALIDA_SOP2 : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL SALIDA_SDMP : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL SALIDA_MEM_PROG : STD_LOGIC_VECTOR(24 DOWNTO 0);
-    SIGNAL READ_DATA1 : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL READ_DATA2 : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL READ_REGISTER2 : STD_LOGIC_VECTOR(3 DOWNTO 0);
-    SIGNAL WRITE_DATA : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL SALIDA_SR : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL SALIDA_SEXT : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL BANDERAS : STD_LOGIC_VECTOR(3 DOWNTO 0);
-    SIGNAL SALIDA_ALU : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL SALIDA_SDMD : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL SALIDA_RAM : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL SALIDA_EXT_DIR : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL SALIDA_EXT_SIG : STD_LOGIC_VECTOR(15 DOWNTO 0);
-
-    constant logic_one: std_logic := '1';
-
-BEGIN
-
-	datain <= read_data2;
-
-	DIV : DIVISOR PORT MAP(
-		OSC_CLK		=> 	CLK,
-		CLR			=>	CLR,
-		CLK			=>	clk_reduced
-	);
-
-	SAL_ALU <= SALIDA_ALU;
-	WD		<= SALIDA_CONTROL(1);
-	BANDAS <= SALIDA_CONTROL(6 DOWNTO 3);
-
-	MEM_PROG : program_memory PORT MAP(
-		A => SALIDA_PILA,
-        D => SALIDA_MEM_PROG,
-        clk => clk
-	);
+	--INS(19) = UP
+	--INS(18) = DW
+	--INS(17) = WPC
+	--INS(16) = SDMP
+	--INS(15) = SR2
+	--INS(14) = SWD
+	--INS(13) = SHE
+	--INS(12) = DIR
+	--INS(11) = WR
+	--INS(10) = LF
+	--INS(9)  = SEXT
+	--INS(8)  = SOP1
+	--INS(7)  = SOP2
+	--INS(6:3)= ALUOP
+	--INS(2)  = SDMD
+	--INS(1)  = WD
+	--INS(0)  = SR
 	
-	SALIDA_SOP1 <= SALIDA_PILA WHEN (SALIDA_CONTROL(8) = '1') ELSE READ_DATA1;
+	FREC: divisor PORT MAP(
+		OSC_clk =>OSC,
+		CLR =>CLR,
+		CLK =>CLK,
+		diven => diven
+	);	
+
+	cont: control port map(
+		clk => clk,
+		clr => clr,
+		flags => flags,
+		lf => ins(10),
+		opcode => principal(24 downto 20),
+		funcode => principal(3 downto 0),
+		s => ins
+	); --
 	
-	SALIDA_SDMP <= SALIDA_SR WHEN (SALIDA_CONTROL(16) = '1') ELSE SALIDA_MEM_PROG(15 DOWNTO 0);
-
-	PILA_HW	: stack PORT MAP(
-		CLK 	=> CLK_reduced,
-		CLR 	=> CLR,
-		WPC	=> SALIDA_CONTROL(17),
-		UP		=> SALIDA_CONTROL(19),
-		DW		=> SALIDA_CONTROL(18),
-		D 		=> SALIDA_SDMP,
-		Q		=> SALIDA_PILA
+	regs: file_register port map(
+		clk => clk,
+		read_register_1 => principal(15 downto 12),
+		read_register_2 => sal_sr2,
+		write_register => principal(19 downto 16),
+		shamt => principal(7 downto 4),
+		write_data => sal_swd,
+		she => ins(13),
+		dir => ins(12),
+		we => ins(11),
+		read_data_1 => read_data1,
+		read_data_2 => read_data2
 	); --
-
-	READ_REGISTER2 <= SALIDA_MEM_PROG(19 DOWNTO 16) WHEN (SALIDA_CONTROL(15) = '1') ELSE 
-							SALIDA_MEM_PROG(11 DOWNTO 8);
-
-	WRITE_DATA <= SALIDA_SR WHEN (SALIDA_CONTROL(14) = '1') ELSE 
-						SALIDA_MEM_PROG(15 DOWNTO 0);
 	
-	ARCH_REG : file_register PORT MAP(
-		READ_REGISTER_1 => SALIDA_MEM_PROG(15 DOWNTO 12),
-		READ_REGISTER_2 => READ_REGISTER2,
-		WRITE_REGISTER => SALIDA_MEM_PROG(19 DOWNTO 16),
-		SHAMT				=> SALIDA_MEM_PROG(7 DOWNTO 4),
-		WRITE_DATA 		=> WRITE_DATA,
-		CLK				=> CLK_reduced,
-		SHE 				=> SALIDA_CONTROL(13),
-		DIR				=> SALIDA_CONTROL(12),
-		We					=> SALIDA_CONTROL(11),
-		READ_DATA_1		=> READ_DATA1,
-		READ_DATA_2		=> READ_DATA2
+	ua: alu port map(
+		a => sal_sop1,
+		b => sal_sop2,
+		aluop => ins(6 downto 3),
+		ans => sal_alu,
+		flags => flags
 	); --
-
-
-	SALIDA_EXT_DIR <= X"0"&SALIDA_MEM_PROG(11 DOWNTO 0);
-	SALIDA_EXT_SIG <= X"F"&SALIDA_MEM_PROG(11 DOWNTO 0) WHEN (SALIDA_MEM_PROG(11) = '1')
-							ELSE X"0"&SALIDA_MEM_PROG(11 DOWNTO 0);
-
-	SALIDA_SEXT <= SALIDA_EXT_DIR WHEN (SALIDA_CONTROL(9) = '1') ELSE
-						SALIDA_EXT_SIG;
-
-
-	SALIDA_SOP2 <= SALIDA_SEXT WHEN (SALIDA_CONTROL(7) = '1') ELSE 
-                        READ_DATA2;
-    
-	MEM_DATOS : memoria_datos PORT MAP(
-		WD		=> SALIDA_CONTROL(1),
-		CLK	    => CLK_reduced,
-		ADR 	=> SALIDA_SDMD,
-		bus_datos_entrada	=> READ_DATA2,
-        bus_datos_salida 	=> SALIDA_RAM,
-        rd => logic_one
-	); --
-
-	ALU_MIPS : ALU PORT MAP(
-		A 	=> SALIDA_SOP1,
-		B 	=> SALIDA_SOP2,
-		ALUOP	=> SALIDA_CONTROL(6 DOWNTO 3),
-		flags => BANDERAS,
-		ans => SALIDA_ALU
+	
+	mem_prog: program_memory port map(
+		a => sal_pila,
+		d => principal
 	); -- 
+	
+	mem_datos: memoria_datos port map(
+		clk => clk,
+		DIN => read_data2,
+		ADR => sal_sdmd,
+		wd  => ins(1),
+		DOUT => sal_ram
+	); -- 
+	
+	st: stack port map(
+		clk => clk,
+		clr => clr,
+		D => sal_sdmp,
+		up => ins(19),
+		dw => ins(18),
+		wpc =>  ins(17),
+		q => sal_pila
+	); -- 
+	
+	sal_sdmp <= principal(15 downto 0) when ins(16) = '0' else sal_sr;
+	sal_sr2 <= principal(11 downto 8) when ins(15) = '0' else principal(19 downto 16);
+	sal_swd <= principal(15 downto 0) when ins(14) = '0' else sal_sr;
+	sal_sgn <= X"F"&principal(11 downto 0) when principal(11) = '1' else X"0"&principal(11 downto 0);
+	sal_dir <= X"0"&principal(11 downto 0);
+	sal_sext <= sal_sgn when ins(9) = '0' else sal_dir;
+	sal_sop1 <= read_data1 when ins(8) = '0' else sal_pila;
+	sal_sop2 <= read_data2 when ins(7) = '0' else sal_sext;
+	sal_sdmd <= sal_alu when ins(2) = '0' else principal(15 downto 0);
+	sal_sr <= sal_ram when ins(0) = '0' else sal_alu;
 
-	SALIDA_SDMD <= SALIDA_MEM_PROG(15 DOWNTO 0) WHEN (SALIDA_CONTROL(2) = '1') ELSE
-						SALIDA_ALU;
+	salida_leds <= read_data2;
 
-	SALIDA_SR <= SALIDA_ALU WHEN (SALIDA_CONTROL(1) = '1') ELSE
-					SALIDA_RAM;
-
-	UNIDAD_CTRL : CONTROL PORT MAP(
-		OPCODE 	=>	SALIDA_MEM_PROG(24 DOWNTO 20),
-		FUNCODE	=>	SALIDA_MEM_PROG(3 DOWNTO 0),
-		flags	=>	BANDERAS,
-		CLK		=>	CLK_reduced,
-		CLR		=>	CLR,
-		LF		=>	SALIDA_CONTROL(10),
-		s 	=>	SALIDA_CONTROL
-	); --
-
-END ESCOMIPS;
+end Behavioral;
 

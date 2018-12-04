@@ -1,0 +1,51 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib secureip -o /home/angelos/Documents/git/computerArchitecture/finalBoss/counter_tb_isim_beh.exe -prj /home/angelos/Documents/git/computerArchitecture/finalBoss/counter_tb_beh.prj work.counter_tb 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/control/opcode_definitions.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/control/mem_opcode.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/control/mem_fun.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/control/control_unit.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/control/control_components.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/stack.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/program_memory.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/MEMORIA_DATOS.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/file_register.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/DIVISOR.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/control/control.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/components.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/alu.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/main.vhd" into library work
+Parsing VHDL file "/home/angelos/Documents/git/computerArchitecture/finalBoss/counter_tb.vhd" into library work
+Starting static elaboration
+Completed static elaboration
+Fuse Memory Usage: 110388 KB
+Fuse CPU Usage: 1230 ms
+Compiling package standard
+Compiling package std_logic_1164
+Compiling package components
+Compiling package std_logic_arith
+Compiling package std_logic_unsigned
+Compiling package control_components
+Compiling package opcode_definitions
+Compiling package numeric_std
+Compiling architecture behavioral of entity DIVISOR [\DIVISOR(25)\]
+Compiling architecture arch of entity mem_fun [\mem_fun(4,20)\]
+Compiling architecture arch of entity mem_opcode [\mem_opcode(5,20)\]
+Compiling architecture behavioral of entity control_unit [control_unit_default]
+Compiling architecture arch of entity control [control_default]
+Compiling architecture arch of entity file_register [\file_register(16,4)\]
+Compiling architecture angel of entity alu [\alu(16)\]
+Compiling architecture behavior of entity program_memory [\program_memory(16,25)\]
+Compiling architecture ramd of entity MEMORIA_DATOS [\MEMORIA_DATOS(16,16)\]
+Compiling architecture arch of entity stack [stack_default]
+Compiling architecture behavioral of entity main [main_default]
+Compiling architecture behavior of entity counter_tb
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 31 VHDL Units
+Built simulation executable /home/angelos/Documents/git/computerArchitecture/finalBoss/counter_tb_isim_beh.exe
+Fuse Memory Usage: 696356 KB
+Fuse CPU Usage: 1910 ms
+GCC CPU Usage: 1390 ms

@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2018-12-04T10:40:57</DateModified>
+  <DateModified>2018-12-04T15:36:57</DateModified>
   <ModuleName>main</ModuleName>
-  <SummaryTimeStamp>Unknown</SummaryTimeStamp>
+  <SummaryTimeStamp>2018-12-04T15:18:46</SummaryTimeStamp>
   <SavedFilePath>/home/angelos/Documents/git/computerArchitecture/finalBoss/iseconfig/main.xreport</SavedFilePath>
   <ImplementationReportsDirectory>/home/angelos/Documents/git/computerArchitecture/finalBoss/</ImplementationReportsDirectory>
-  <DateInitialized>2018-12-04T09:49:13</DateInitialized>
+  <DateInitialized>2018-12-04T14:24:51</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
  <body>

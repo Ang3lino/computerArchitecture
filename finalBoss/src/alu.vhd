@@ -91,12 +91,15 @@ begin
     -- aluop(1): mux(1)
     -- aluop(0): mux(0)
     process(a, b, aluop) is 
-        variable a_invert: std_logic := aluop(3);
-        variable b_invert: std_logic := aluop(2);
+        variable a_invert: std_logic;
+        variable b_invert: std_logic;
 
         variable muxa: std_logic_vector(n - 1 downto 0) ;
         variable muxb: std_logic_vector(n - 1 downto 0) ;
     begin
+		  a_invert := aluop(3);
+		  b_invert := aluop(2);
+	 
         for i in n - 1 downto 0 loop
             muxa(i) := a_invert xor a(i);
             muxb(i) := b_invert xor b(i);
