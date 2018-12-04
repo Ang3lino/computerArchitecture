@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/angelos/Documents/git/computerArchitecture/finalBoss/main.ncd
+OUTFILE=/home/angelos/Documents/git/computerArchitecture/finalBoss/main.bit
+FAMILY=Artix7
+PART=xc7a100t-3csg324
+WORKINGDIR=/home/angelos/Documents/git/computerArchitecture/finalBoss
+LICENSE=WebPack
+USER_INFO=__0_0_0

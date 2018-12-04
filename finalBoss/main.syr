@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: main.prj
@@ -158,6 +158,9 @@ Parsing architecture <ESCOMIPS> of entity <main>.
 Elaborating entity <main> (architecture <ESCOMIPS>) from library <work>.
 
 Elaborating entity <DIVISOR> (architecture <Behavioral>) from library <work>.
+WARNING:HDLCompiler:1127 - "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/main.vhd" Line 56: Assignment to sal_alu ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/main.vhd" Line 57: Assignment to wd ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/angelos/Documents/git/computerArchitecture/finalBoss/src/main.vhd" Line 58: Assignment to bandas ignored, since the identifier is never used
 
 Elaborating entity <program_memory> (architecture <BEHAVIOR>) with generics from library <work>.
 
@@ -4612,9 +4615,9 @@ Primitive and Black Box Usage:
 # Clock Buffers                    : 2
 #      BUFG                        : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 23
+# IO Buffers                       : 17
 #      IBUF                        : 1
-#      OBUF                        : 22
+#      OBUF                        : 16
 
 Device utilization summary:
 ---------------------------
@@ -4637,8 +4640,8 @@ Slice Logic Distribution:
    Number of unique control sets:        13
 
 IO Utilization: 
- Number of IOs:                          24
- Number of bonded IOBs:                  24  out of    210    11%  
+ Number of IOs:                          18
+ Number of bonded IOBs:                  18  out of    210     8%  
 
 Specific Feature Utilization:
  Number of Block RAM/FIFO:               50  out of    135    37%  
@@ -4711,9 +4714,9 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 11.857ns (Maximum Frequency: 84.338MHz)
+   Minimum period: 11.867ns (Maximum Frequency: 84.269MHz)
    Minimum input arrival time before clock: 0.756ns
-   Maximum output required time after clock: 4.155ns
+   Maximum output required time after clock: 3.136ns
    Maximum combinational path delay: No path found
 
 Timing Details:
@@ -4722,10 +4725,10 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'DIV/CONT_24'
-  Clock period: 11.857ns (frequency: 84.338MHz)
+  Clock period: 11.867ns (frequency: 84.269MHz)
   Total number of paths / destination ports: 464947 / 458
 -------------------------------------------------------------------------
-Delay:               5.929ns (Levels of Logic = 12)
+Delay:               5.933ns (Levels of Logic = 12)
   Source:            UNIDAD_CTRL/rbanderas_2 (FF)
   Destination:       ARCH_REG/Mram_buff11 (RAM)
   Source Clock:      DIV/CONT_24 falling
@@ -4736,11 +4739,11 @@ Delay:               5.929ns (Levels of Logic = 12)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDCE_1:C->Q           6   0.364   0.534  UNIDAD_CTRL/rbanderas_2 (UNIDAD_CTRL/rbanderas_2)
-     LUT6:I3->O            1   0.097   0.000  UNIDAD_CTRL/sig_s<0>9_F (N8571)
+     LUT6:I3->O            1   0.097   0.000  UNIDAD_CTRL/sig_s<0>9_F (N8586)
      MUXF7:I0->O           5   0.277   0.530  UNIDAD_CTRL/sig_s<0>9 (UNIDAD_CTRL/sig_s<0>_bdd2)
-     LUT6:I3->O            1   0.097   0.000  Mmux_READ_REGISTER241_F (N8607)
+     LUT6:I3->O            1   0.097   0.000  Mmux_READ_REGISTER241_F (N8622)
      MUXF7:I0->O          10   0.277   0.321  Mmux_READ_REGISTER241 (READ_REGISTER2<3>)
-     RAM32M:ADDRC3->DOC0    4   0.299   0.309  ARCH_REG/Mram_buff12 (READ_DATA2<10>)
+     RAM32M:ADDRC3->DOC0    5   0.299   0.314  ARCH_REG/Mram_buff12 (datain_10_OBUF)
      LUT6:I5->O           12   0.097   0.330  ALU_MIPS/Mmux_s_ans2_1 (ALU_MIPS/Mmux_s_ans2)
      MUXF7:S->O            1   0.335   0.000  inst_LPM_MUX4_14_f7 (inst_LPM_MUX4_14_f7)
      MUXF8:I0->O           4   0.218   0.309  inst_LPM_MUX4_12_f8 (inst_LPM_MUX4_4)
@@ -4750,7 +4753,7 @@ Delay:               5.929ns (Levels of Logic = 12)
      LUT5:I4->O            2   0.097   0.283  ARCH_REG/Mmux_writing.tmp_reg11 (ARCH_REG/writing.tmp_reg<4>)
      RAM32M:DIC0               0.260          ARCH_REG/Mram_buff11
     ----------------------------------------
-    Total                      5.929ns (3.012ns logic, 2.916ns route)
+    Total                      5.933ns (3.012ns logic, 2.921ns route)
                                        (50.8% logic, 49.2% route)
 
 =========================================================================
@@ -4839,71 +4842,28 @@ Offset:              0.756ns (Levels of Logic = 1)
                                        (46.3% logic, 53.7% route)
 
 =========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'ALU_MIPS/aluop[1]_PWR_18_o_Mux_12_o'
-  Total number of paths / destination ports: 22 / 16
--------------------------------------------------------------------------
-Offset:              2.862ns (Levels of Logic = 4)
-  Source:            ALU_MIPS/c_10 (LATCH)
-  Destination:       SAL_ALU<10> (PAD)
-  Source Clock:      ALU_MIPS/aluop[1]_PWR_18_o_Mux_12_o falling
-
-  Data Path: ALU_MIPS/c_10 to SAL_ALU<10>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     LD:G->Q               4   0.472   0.697  ALU_MIPS/c_10 (ALU_MIPS/c_10)
-     LUT5:I0->O            1   0.097   0.511  Mmux_SALIDA_SOP121_SW3 (N8558)
-     LUT5:I2->O            2   0.097   0.515  ALU_MIPS/Mmux_s_ans2_SW2 (N8550)
-     LUT6:I3->O           22   0.097   0.375  ALU_MIPS/Mmux_s_ans2 (SALIDA_SDMD<10>)
-     OBUF:I->O                 0.000          SAL_ALU_10_OBUF (SAL_ALU<10>)
-    ----------------------------------------
-    Total                      2.862ns (0.763ns logic, 2.099ns route)
-                                       (26.7% logic, 73.3% route)
-
-=========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'DIV/CONT_24'
-  Total number of paths / destination ports: 2278 / 17
+  Total number of paths / destination ports: 1104 / 16
 -------------------------------------------------------------------------
-Offset:              4.155ns (Levels of Logic = 8)
+Offset:              3.136ns (Levels of Logic = 6)
   Source:            UNIDAD_CTRL/ffd1 (FF)
-  Destination:       SAL_ALU<9> (PAD)
+  Destination:       datain<10> (PAD)
   Source Clock:      DIV/CONT_24 rising
 
-  Data Path: UNIDAD_CTRL/ffd1 to SAL_ALU<9>
+  Data Path: UNIDAD_CTRL/ffd1 to datain<10>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDC:C->Q              6   0.361   0.579  UNIDAD_CTRL/ffd1 (UNIDAD_CTRL/ffd1)
-     LUT6:I2->O            1   0.097   0.000  UNIDAD_CTRL/sig_s<0>9_F (N8571)
+     LUT6:I2->O            1   0.097   0.000  UNIDAD_CTRL/sig_s<0>9_F (N8586)
      MUXF7:I0->O           5   0.277   0.530  UNIDAD_CTRL/sig_s<0>9 (UNIDAD_CTRL/sig_s<0>_bdd2)
-     LUT6:I3->O            1   0.097   0.000  Mmux_READ_REGISTER241_F (N8607)
+     LUT6:I3->O            1   0.097   0.000  Mmux_READ_REGISTER241_F (N8622)
      MUXF7:I0->O          10   0.277   0.321  Mmux_READ_REGISTER241 (READ_REGISTER2<3>)
-     RAM32M:ADDRB3->DOB1    2   0.299   0.299  ARCH_REG/Mram_buff12 (READ_DATA2<9>)
-     LUT6:I5->O            7   0.097   0.539  ALU_MIPS/Mxor_muxb<9>_xo<0>1 (ALU_MIPS/muxb<9>)
-     LUT5:I2->O            2   0.097   0.283  ALU_MIPS/Mmux_s_ans161 (SALIDA_SDMD<9>)
-     OBUF:I->O                 0.000          SAL_ALU_9_OBUF (SAL_ALU<9>)
+     RAM32M:ADDRB3->DOB0    5   0.299   0.298  ARCH_REG/Mram_buff12 (datain_8_OBUF)
+     OBUF:I->O                 0.000          datain_8_OBUF (datain<8>)
     ----------------------------------------
-    Total                      4.155ns (1.602ns logic, 2.553ns route)
-                                       (38.6% logic, 61.4% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              0.645ns (Levels of Logic = 1)
-  Source:            DIV/CONT_24 (FF)
-  Destination:       clk_reduced (PAD)
-  Source Clock:      CLK rising
-
-  Data Path: DIV/CONT_24 to clk_reduced
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDC:C->Q              2   0.361   0.283  DIV/CONT_24 (DIV/CONT_24)
-     OBUF:I->O                 0.000          clk_reduced_OBUF (clk_reduced)
-    ----------------------------------------
-    Total                      0.645ns (0.361ns logic, 0.283ns route)
-                                       (56.0% logic, 44.0% route)
+    Total                      3.136ns (1.408ns logic, 1.728ns route)
+                                       (44.9% logic, 55.1% route)
 
 =========================================================================
 
@@ -4915,7 +4875,7 @@ Clock to Setup on destination clock ALU_MIPS/aluop[1]_PWR_18_o_Mux_12_o
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-DIV/CONT_24    |         |         |    8.758|         |
+DIV/CONT_24    |         |         |    8.764|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock CLK
@@ -4931,22 +4891,22 @@ Clock to Setup on destination clock DIV/CONT_24
                                    | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                       |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -----------------------------------+---------+---------+---------+---------+
-ALU_MIPS/aluop[1]_PWR_18_o_Mux_12_o|         |    5.213|    3.857|         |
-DIV/CONT_24                        |    6.048|    5.929|    4.817|         |
+ALU_MIPS/aluop[1]_PWR_18_o_Mux_12_o|         |    5.213|    3.853|         |
+DIV/CONT_24                        |    6.044|    5.933|    4.818|         |
 -----------------------------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 166.00 secs
-Total CPU time to Xst completion: 116.34 secs
+Total REAL time to Xst completion: 129.00 secs
+Total CPU time to Xst completion: 122.82 secs
  
 --> 
 
 
-Total memory usage is 1748772 kilobytes
+Total memory usage is 1748864 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   29 (   0 filtered)
+Number of warnings :   32 (   0 filtered)
 Number of infos    : 4084 (   0 filtered)
 

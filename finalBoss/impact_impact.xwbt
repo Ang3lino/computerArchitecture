@@ -1,0 +1,8 @@
+INTSTYLE=impact
+INFILE=/home/angelos/Documents/git/computerArchitecture/finalBoss/impact.xsl
+OUTFILE=/home/angelos/Documents/git/computerArchitecture/finalBoss/impact.xsl
+FAMILY=None
+PART=None
+WORKINGDIR=/home/angelos/Documents/git/computerArchitecture/finalBoss
+LICENSE=iMPACT
+USER_INFO=iMPACT

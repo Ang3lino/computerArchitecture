@@ -9,14 +9,17 @@ ENTITY main IS
 	PORT ( 
 		CLK	: IN STD_LOGIC;
 		CLR	: IN STD_LOGIC;
-		clk_reduced : inout STD_LOGIC;
-      	SAL_ALU : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-		BANDAS	: out STD_LOGIC_VECTOR(3 DOWNTO 0);
-		WD : out STD_LOGIC
+		datain: inout std_logic_vector(15 downto 0)
 	);
 END main;
 
 ARCHITECTURE ESCOMIPS OF main IS
+
+	signal clk_reduced : STD_LOGIC;
+    signal SAL_ALU : STD_LOGIC_VECTOR(15 DOWNTO 0);
+	signal wd: std_logic;
+	signal BANDAS : STD_LOGIC_VECTOR(3 DOWNTO 0);
+
 
     --SIGNAL CLK 	:	STD_LOGIC;
     SIGNAL SALIDA_CONTROL : STD_LOGIC_VECTOR(19 DOWNTO 0);
@@ -41,6 +44,8 @@ ARCHITECTURE ESCOMIPS OF main IS
     constant logic_one: std_logic := '1';
 
 BEGIN
+
+	datain <= read_data2;
 
 	DIV : DIVISOR PORT MAP(
 		OSC_CLK		=> 	CLK,

@@ -10,19 +10,19 @@ Target Device  : xc7a100t
 Target Package : csg324
 Target Speed   : -3
 Mapper Version : artix7 -- $Revision: 1.55 $
-Mapped Date    : Tue Dec  4 10:01:40 2018
+Mapped Date    : Tue Dec  4 10:59:41 2018
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:   31
+Number of warnings:    5
 Slice Logic Utilization:
   Number of Slice Registers:                   178 out of 126,800    1%
     Number used as Flip Flops:                 161
     Number used as Latches:                     17
     Number used as Latch-thrus:                  0
     Number used as AND/OR logics:                0
-  Number of Slice LUTs:                        542 out of  63,400    1%
+  Number of Slice LUTs:                        541 out of  63,400    1%
     Number used as logic:                      370 out of  63,400    1%
       Number using O6 output only:             282
       Number using O5 output only:              52
@@ -38,17 +38,17 @@ Slice Logic Utilization:
         Number using O5 output only:             0
         Number using O5 and O6:                  0
       Number used as Shift Register:             0
-    Number used exclusively as route-thrus:     84
-      Number with same-slice register load:      2
+    Number used exclusively as route-thrus:     83
+      Number with same-slice register load:      0
       Number with same-slice carry load:         3
-      Number with other load:                   79
+      Number with other load:                   80
 
 Slice Logic Distribution:
-  Number of occupied Slices:                   212 out of  15,850    1%
-  Number of LUT Flip Flop pairs used:          639
-    Number with an unused Flip Flop:           461 out of     639   72%
-    Number with an unused LUT:                  97 out of     639   15%
-    Number of fully used LUT-FF pairs:          81 out of     639   12%
+  Number of occupied Slices:                   238 out of  15,850    1%
+  Number of LUT Flip Flop pairs used:          655
+    Number with an unused Flip Flop:           477 out of     655   72%
+    Number with an unused LUT:                 114 out of     655   17%
+    Number of fully used LUT-FF pairs:          64 out of     655    9%
     Number of unique control sets:              16
     Number of slice register sites lost
       to control set restrictions:              38 out of 126,800    1%
@@ -62,7 +62,8 @@ Slice Logic Distribution:
   over-mapped for a non-BRAM resource or if placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                        24 out of     210   11%
+  Number of bonded IOBs:                        18 out of     210    8%
+    Number of LOCed IOBs:                       18 out of      18  100%
 
 Specific Feature Utilization:
   Number of RAMB36E1/FIFO36E1s:                 50 out of     135   37%
@@ -99,11 +100,11 @@ Specific Feature Utilization:
   Number of STARTUPs:                            0 out of       1    0%
   Number of XADCs:                               0 out of       1    0%
 
-Average Fanout of Non-Clock Nets:                7.00
+Average Fanout of Non-Clock Nets:                6.99
 
-Peak Memory Usage:  1255 MB
-Total REAL time to MAP completion:  48 secs 
-Total CPU time to MAP completion:   43 secs 
+Peak Memory Usage:  1238 MB
+Total REAL time to MAP completion:  47 secs 
+Total CPU time to MAP completion:   41 secs 
 
 Table of Contents
 -----------------
@@ -126,9 +127,6 @@ Section 1 - Errors
 
 Section 2 - Warnings
 --------------------
-WARNING:LIT:701 - PAD symbol "CLK" has an undefined IOSTANDARD.
-WARNING:LIT:702 - PAD symbol "CLK" is not constrained (LOC) to a specific
-   location.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    ALU_MIPS/aluop[1]_PWR_18_o_Mux_12_o is sourced by a combinatorial pin. This
    is not good design practice. Use the CE pin to control the loading of data
@@ -141,126 +139,6 @@ WARNING:PhysDesignRules:367 - The signal <ARCH_REG/Mram_buff12_RAMD_D1_O> is
    incomplete. The signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <ARCH_REG/Mram_buff2_RAMD_D1_O> is
    incomplete. The signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:2452 - The IOB WD is either not constrained (LOC) to a
-   specific location and/or has an undefined I/O Standard (IOSTANDARD). This
-   condition may seriously affect the device and will be an error in bitstream
-   creation. It should be corrected by properly specifying the pin location and
-   I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<10> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<14> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<13> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<12> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<11> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<15> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB clk_reduced is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB BANDAS<3> is either not constrained (LOC)
-   to a specific location and/or has an undefined I/O Standard (IOSTANDARD).
-   This condition may seriously affect the device and will be an error in
-   bitstream creation. It should be corrected by properly specifying the pin
-   location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB BANDAS<1> is either not constrained (LOC)
-   to a specific location and/or has an undefined I/O Standard (IOSTANDARD).
-   This condition may seriously affect the device and will be an error in
-   bitstream creation. It should be corrected by properly specifying the pin
-   location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB BANDAS<2> is either not constrained (LOC)
-   to a specific location and/or has an undefined I/O Standard (IOSTANDARD).
-   This condition may seriously affect the device and will be an error in
-   bitstream creation. It should be corrected by properly specifying the pin
-   location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB BANDAS<0> is either not constrained (LOC)
-   to a specific location and/or has an undefined I/O Standard (IOSTANDARD).
-   This condition may seriously affect the device and will be an error in
-   bitstream creation. It should be corrected by properly specifying the pin
-   location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB CLK is either not constrained (LOC) to a
-   specific location and/or has an undefined I/O Standard (IOSTANDARD). This
-   condition may seriously affect the device and will be an error in bitstream
-   creation. It should be corrected by properly specifying the pin location and
-   I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB CLR is either not constrained (LOC) to a
-   specific location and/or has an undefined I/O Standard (IOSTANDARD). This
-   condition may seriously affect the device and will be an error in bitstream
-   creation. It should be corrected by properly specifying the pin location and
-   I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<0> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<3> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<4> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<1> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<2> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<7> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<8> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<5> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<6> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
-WARNING:PhysDesignRules:2452 - The IOB SAL_ALU<9> is either not constrained
-   (LOC) to a specific location and/or has an undefined I/O Standard
-   (IOSTANDARD). This condition may seriously affect the device and will be an
-   error in bitstream creation. It should be corrected by properly specifying
-   the pin location and I/O Standard.
 
 Section 3 - Informational
 -------------------------
@@ -306,30 +184,24 @@ Section 6 - IOB Properties
 | IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
 |                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BANDAS<0>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| BANDAS<1>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| BANDAS<2>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| BANDAS<3>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
 | CLK                                | IOB              | INPUT     | LVCMOS18             |       |          |      |              |          |          |
 | CLR                                | IOB              | INPUT     | LVCMOS18             |       |          |      |              |          |          |
-| SAL_ALU<0>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<1>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<2>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<3>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<4>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<5>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<6>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<7>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<8>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<9>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<10>                        | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<11>                        | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<12>                        | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<13>                        | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<14>                        | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| SAL_ALU<15>                        | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| WD                                 | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
-| clk_reduced                        | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<0>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<1>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<2>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<3>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<4>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<5>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<6>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<7>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<8>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<9>                          | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<10>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<11>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<12>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<13>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<14>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| datain<15>                         | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Section 7 - RPMs

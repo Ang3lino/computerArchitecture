@@ -1,0 +1,21 @@
+Release 14.7 Drc P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Tue Dec  4 11:04:25 2018
+
+drc -z main.ncd main.pcf
+
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   ALU_MIPS/aluop[1]_PWR_18_o_Mux_12_o is sourced by a combinatorial pin. This
+   is not good design practice. Use the CE pin to control the loading of data
+   into the flip-flop.
+WARNING:PhysDesignRules:367 - The signal <ARCH_REG/Mram_buff11_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ARCH_REG/Mram_buff1_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ARCH_REG/Mram_buff12_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <ARCH_REG/Mram_buff2_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+DRC detected 0 errors and 5 warnings.  Please see the previously displayed
+individual error or warning messages for more details.

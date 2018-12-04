@@ -5,6 +5,15 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="HDLCompiler" num="1127" delta="new" >"/home/angelos/Documents/git/computerArchitecture/finalBoss/src/main.vhd" Line 56: Assignment to <arg fmt="%s" index="1">sal_alu</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="new" >"/home/angelos/Documents/git/computerArchitecture/finalBoss/src/main.vhd" Line 57: Assignment to <arg fmt="%s" index="1">wd</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="new" >"/home/angelos/Documents/git/computerArchitecture/finalBoss/src/main.vhd" Line 58: Assignment to <arg fmt="%s" index="1">bandas</arg> ignored, since the identifier is never used
+</msg>
+
 <msg type="warning" file="HDLCompiler" num="92" delta="new" >"/home/angelos/Documents/git/computerArchitecture/finalBoss/src/file_register.vhd" Line 37: <arg fmt="%s" index="1">dir</arg> should be on the sensitivity list of the process
 </msg>
 
