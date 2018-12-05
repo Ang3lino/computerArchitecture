@@ -5,13 +5,19 @@ use WORK.components.ALL;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity main is
-    Port ( OSC : in  STD_LOGIC;
-           clr : in  STD_LOGIC;
-			  diven: in std_logic;
-			  salida_leds : out std_logic_vector(15 downto 0));
+    Port (
+		OSC : in  STD_LOGIC;
+		clr : in  STD_LOGIC;
+		diven: in std_logic;
+		scontrol: inout std_logic_vector(19 downto 0);
+		qstack: inout std_logic_vector(15 downto 0);
+		dmem_prog: inout std_logic_vector(24 downto 0);
+		ans_alu: inout std_logic_vector(15 downto 0);
+		salida_leds : out std_logic_vector(15 downto 0));
 end main;
 
 architecture Behavioral of main is
+
 	SIGNAL CLK: STD_LOGIC;
 	signal INS: std_logic_vector(19 downto 0);
 	signal principal: std_logic_vector(24 downto 0);
@@ -22,6 +28,12 @@ architecture Behavioral of main is
 	signal sal_alu, sal_pila, sal_ram: std_logic_vector(15 downto 0);
 	signal sal_sgn, sal_dir: std_logic_vector(15 downto 0);
 begin
+
+	-- debugging
+	dmem_prog <= principal;
+	qstack <= sal_pila;
+	scontrol <= ins;
+	ans_alu <= sal_alu;
 
 	--INS(19) = UP
 	--INS(18) = DW

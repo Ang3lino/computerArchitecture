@@ -18,7 +18,8 @@ entity file_register is
         we: in std_logic; -- write enable
         she: in std_logic; -- shift enabled
         clk: in std_logic;
-        read_data_1, read_data_2: out std_logic_vector(nbits - 1 downto 0)
+        read_data_1: inout std_logic_vector(nbits - 1 downto 0);
+		  read_data_2: out std_logic_vector(nbits - 1 downto 0)
     );
 end entity;
 
@@ -26,30 +27,33 @@ architecture arch of file_register is
 
     type registers is array(0 to 2 ** naddr - 1) of std_logic_vector(nbits - 1 downto 0);
     signal buff: registers;
+	 
+	 signal sig_out_shift: std_logic_vector(nbits - 1 downto 0);
+	 signal sig_towrite: std_logic_vector(nbits - 1 downto 0);
 
 begin
 
-    writing: process(clk, write_data, she, write_register, we)
-        variable tmp_reg: std_logic_vector(nbits - 1 downto 0);
-    begin
-
-        if she = '1' then 
-            if dir = '1' then 
-                tmp_reg := TO_STDLOGICVECTOR(TO_BITVECTOR(
-                    buff( conv_integer(read_register_1)) ) SLL CONV_INTEGER(shamt) );
-            else
-                tmp_reg := TO_STDLOGICVECTOR(TO_BITVECTOR(
-                    buff( conv_integer(read_register_1)) ) SRL CONV_INTEGER(shamt) );
-            end if;
-        else 
-            tmp_reg := write_data;
-        end if;
-
-        if rising_edge(clk) and we = '1' then 
-            buff(conv_integer(write_register)) <= tmp_reg;
-        end if;
-
-    end process;
+	barrel_shifter: process(shamt, dir, read_data_1)
+	begin 
+		if dir = '1' then -- left
+			 sig_out_shift <= TO_STDLOGICVECTOR( TO_BITVECTOR(
+				read_data_1) SLL CONV_INTEGER(shamt) );
+		else
+			 sig_out_shift <= TO_STDLOGICVECTOR( TO_BITVECTOR(
+				 read_data_1 ) SRL CONV_INTEGER(shamt) );
+		end if;
+	end process;
+	
+	reg_proc: process(clk)
+	begin
+		if rising_edge(clk) then
+			if we = '1' then
+				buff(conv_integer(write_register)) <= sig_towrite;
+			end if;
+		end if;
+	end process reg_proc;
+	 
+	sig_towrite <= sig_out_shift when she = '1' else write_data;
 
     read_data_1 <= buff(conv_integer(read_register_1));
     read_data_2 <= buff(conv_integer(read_register_2));

@@ -64,7 +64,9 @@ component file_register is
         we: in std_logic; -- write enable
         she: in std_logic; -- shift enabled
         clk: in std_logic;
-        read_data_1, read_data_2: out std_logic_vector(nbits - 1 downto 0)
+        read_data_1 : inout std_logic_vector(nbits - 1 downto 0);
+		  read_data_2: out std_logic_vector(nbits - 1 downto 0)
+
     );
 end component;
 
